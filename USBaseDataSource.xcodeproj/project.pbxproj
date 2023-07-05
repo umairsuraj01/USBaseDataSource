@@ -17,6 +17,18 @@
 		08CB9E672A55AC08009643FD /* USBaseDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E662A55AC08009643FD /* USBaseDataSourceTests.swift */; };
 		08CB9E712A55AC08009643FD /* USBaseDataSourceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E702A55AC08009643FD /* USBaseDataSourceUITests.swift */; };
 		08CB9E732A55AC08009643FD /* USBaseDataSourceUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E722A55AC08009643FD /* USBaseDataSourceUITestsLaunchTests.swift */; };
+		08CB9E802A55AC96009643FD /* USBaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E7F2A55AC96009643FD /* USBaseDataSource.swift */; };
+		08CB9E822A55AD13009643FD /* USBaseCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E812A55AD13009643FD /* USBaseCollectionReusableView.swift */; };
+		08CB9E842A55AD49009643FD /* USSectionedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E832A55AD49009643FD /* USSectionedDataSource.swift */; };
+		08CB9E862A55AD5A009643FD /* USDataSourceItemAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E852A55AD5A009643FD /* USDataSourceItemAccess.swift */; };
+		08CB9E882A55AD68009643FD /* USResultsFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E872A55AD68009643FD /* USResultsFilter.swift */; };
+		08CB9E8C2A55AD8E009643FD /* USBaseHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E8B2A55AD8E009643FD /* USBaseHeaderFooterView.swift */; };
+		08CB9E8E2A55ADA1009643FD /* USBaseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E8D2A55ADA1009643FD /* USBaseCollectionCell.swift */; };
+		08CB9E902A55ADB0009643FD /* USSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E8F2A55ADB0009643FD /* USSection.swift */; };
+		08CB9E922A55ADBE009643FD /* USExpandingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E912A55ADBE009643FD /* USExpandingDataSource.swift */; };
+		08CB9E942A55ADCE009643FD /* USArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E932A55ADCE009643FD /* USArrayDataSource.swift */; };
+		08CB9E962A55AE03009643FD /* USBaseTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E952A55AE03009643FD /* USBaseTableCell.swift */; };
+		08CB9E982A55AE16009643FD /* USCoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E972A55AE16009643FD /* USCoreDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +63,18 @@
 		08CB9E6C2A55AC08009643FD /* USBaseDataSourceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USBaseDataSourceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08CB9E702A55AC08009643FD /* USBaseDataSourceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USBaseDataSourceUITests.swift; sourceTree = "<group>"; };
 		08CB9E722A55AC08009643FD /* USBaseDataSourceUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USBaseDataSourceUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		08CB9E7F2A55AC96009643FD /* USBaseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USBaseDataSource.swift; sourceTree = "<group>"; };
+		08CB9E812A55AD13009643FD /* USBaseCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USBaseCollectionReusableView.swift; sourceTree = "<group>"; };
+		08CB9E832A55AD49009643FD /* USSectionedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USSectionedDataSource.swift; sourceTree = "<group>"; };
+		08CB9E852A55AD5A009643FD /* USDataSourceItemAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USDataSourceItemAccess.swift; sourceTree = "<group>"; };
+		08CB9E872A55AD68009643FD /* USResultsFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USResultsFilter.swift; sourceTree = "<group>"; };
+		08CB9E8B2A55AD8E009643FD /* USBaseHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USBaseHeaderFooterView.swift; sourceTree = "<group>"; };
+		08CB9E8D2A55ADA1009643FD /* USBaseCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USBaseCollectionCell.swift; sourceTree = "<group>"; };
+		08CB9E8F2A55ADB0009643FD /* USSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USSection.swift; sourceTree = "<group>"; };
+		08CB9E912A55ADBE009643FD /* USExpandingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USExpandingDataSource.swift; sourceTree = "<group>"; };
+		08CB9E932A55ADCE009643FD /* USArrayDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USArrayDataSource.swift; sourceTree = "<group>"; };
+		08CB9E952A55AE03009643FD /* USBaseTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USBaseTableCell.swift; sourceTree = "<group>"; };
+		08CB9E972A55AE16009643FD /* USCoreDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USCoreDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +133,18 @@
 				08CB9E5A2A55AC07009643FD /* LaunchScreen.storyboard */,
 				08CB9E5D2A55AC07009643FD /* Info.plist */,
 				08CB9E552A55AC04009643FD /* USBaseDataSource.xcdatamodeld */,
+				08CB9E7F2A55AC96009643FD /* USBaseDataSource.swift */,
+				08CB9E812A55AD13009643FD /* USBaseCollectionReusableView.swift */,
+				08CB9E832A55AD49009643FD /* USSectionedDataSource.swift */,
+				08CB9E852A55AD5A009643FD /* USDataSourceItemAccess.swift */,
+				08CB9E872A55AD68009643FD /* USResultsFilter.swift */,
+				08CB9E8B2A55AD8E009643FD /* USBaseHeaderFooterView.swift */,
+				08CB9E8D2A55ADA1009643FD /* USBaseCollectionCell.swift */,
+				08CB9E8F2A55ADB0009643FD /* USSection.swift */,
+				08CB9E912A55ADBE009643FD /* USExpandingDataSource.swift */,
+				08CB9E932A55ADCE009643FD /* USArrayDataSource.swift */,
+				08CB9E952A55AE03009643FD /* USBaseTableCell.swift */,
+				08CB9E972A55AE16009643FD /* USCoreDataSource.swift */,
 			);
 			path = USBaseDataSource;
 			sourceTree = "<group>";
@@ -261,10 +297,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08CB9E8E2A55ADA1009643FD /* USBaseCollectionCell.swift in Sources */,
+				08CB9E822A55AD13009643FD /* USBaseCollectionReusableView.swift in Sources */,
 				08CB9E512A55AC04009643FD /* ViewController.swift in Sources */,
+				08CB9E842A55AD49009643FD /* USSectionedDataSource.swift in Sources */,
+				08CB9E922A55ADBE009643FD /* USExpandingDataSource.swift in Sources */,
+				08CB9E862A55AD5A009643FD /* USDataSourceItemAccess.swift in Sources */,
+				08CB9E882A55AD68009643FD /* USResultsFilter.swift in Sources */,
+				08CB9E8C2A55AD8E009643FD /* USBaseHeaderFooterView.swift in Sources */,
 				08CB9E4D2A55AC04009643FD /* AppDelegate.swift in Sources */,
+				08CB9E982A55AE16009643FD /* USCoreDataSource.swift in Sources */,
+				08CB9E902A55ADB0009643FD /* USSection.swift in Sources */,
+				08CB9E962A55AE03009643FD /* USBaseTableCell.swift in Sources */,
+				08CB9E942A55ADCE009643FD /* USArrayDataSource.swift in Sources */,
 				08CB9E4F2A55AC04009643FD /* SceneDelegate.swift in Sources */,
 				08CB9E572A55AC04009643FD /* USBaseDataSource.xcdatamodeld in Sources */,
+				08CB9E802A55AC96009643FD /* USBaseDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
