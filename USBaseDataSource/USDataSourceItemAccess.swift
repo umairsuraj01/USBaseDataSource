@@ -8,13 +8,13 @@
 import Foundation
 
 // Enumeration block for enumerating data source items.
-typealias USDataSourceEnumerator = (IndexPath, Any, UnsafeMutablePointer<ObjCBool>) -> Void
+typealias USDataSourceEnumerator = (IndexPath, Any, Bool) -> Void
 
 protocol USDataSourceItemAccess {
     /**
      Return the item at a given index path. Override me in your subclass.
      */
-    func item(at indexPath: IndexPath) -> Any
+    func item(at indexPath: IndexPath) -> Any?
     
     /**
      Search the data source for the first instance of the specified item.
@@ -60,29 +60,29 @@ extension USDataSourceItemAccess {
      - parameter itemBlock: block to execute for each item
      */
     func enumerateItems(with itemBlock: USDataSourceEnumerator) {
-        let stop = UnsafeMutablePointer<ObjCBool>.allocate(capacity: 1)
-        stop.pointee = false
-        
-        for section in 0..<numberOfSections() {
-            let itemCount = numberOfItems(inSection: section)
-            
-            for itemIndex in 0..<itemCount {
-                let indexPath = IndexPath(item: itemIndex, section: section)
-                let item = self.item(at: indexPath)
-                
-                itemBlock(indexPath, item, stop)
-                
-                if stop.pointee {
-                    break
-                }
-            }
-            
-            if stop.pointee {
-                break
-            }
-        }
-        
-        stop.deallocate()
+//        let stop = UnsafeMutablePointer<ObjCBool>.allocate(capacity: 1)
+//        stop.pointee = false
+//
+//        for section in 0..<numberOfSections() {
+//            let itemCount = numberOfItems(inSection: section)
+//
+//            for itemIndex in 0..<itemCount {
+//                let indexPath = IndexPath(item: itemIndex, section: section)
+//                let item = self.item(at: indexPath)
+//
+//                itemBlock(indexPath, item, stop)
+//
+//                if stop.pointee {
+//                    break
+//                }
+//            }
+//
+//            if stop.pointee {
+//                break
+//            }
+//        }
+//        
+//        stop.deallocate()
     }
 }
 

@@ -45,7 +45,7 @@ class USCoreDataSource: USBaseDataSource, NSFetchedResultsControllerDelegate {
     
     // MARK: Initializers
     
-    init() {
+    override init() {
         super.init()
     }
     
@@ -90,11 +90,11 @@ class USCoreDataSource: USBaseDataSource, NSFetchedResultsControllerDelegate {
     
     // MARK: USDataSourceItemAccess
     
-    func numberOfSections() -> Int {
+    override func numberOfSections() -> Int {
         return currentFilter?.numberOfSections() ?? controller?.sections?.count ?? 0
     }
     
-    func numberOfItems(inSection section: Int) -> Int {
+    override func numberOfItems(inSection section: Int) -> Int {
         if let currentFilter = currentFilter {
             return currentFilter.numberOfItems(inSection: section)
         } else if let sectionInfo = controller?.sections?[section] {
@@ -103,7 +103,7 @@ class USCoreDataSource: USBaseDataSource, NSFetchedResultsControllerDelegate {
         return 0
     }
     
-    func numberOfItems() -> Int {
+    override func numberOfItems() -> Int {
         if let currentFilter = currentFilter {
             return currentFilter.numberOfItems()
         } else {
@@ -111,7 +111,7 @@ class USCoreDataSource: USBaseDataSource, NSFetchedResultsControllerDelegate {
         }
     }
     
-    func item(at indexPath: IndexPath) -> Any? {
+    override func item(at indexPath: IndexPath) -> Any? {
         if let currentFilter = currentFilter {
             return currentFilter.item(at: indexPath)
         } else if let object = controller?.object(at: indexPath) {

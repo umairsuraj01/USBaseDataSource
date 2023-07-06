@@ -7,7 +7,10 @@
 
 import UIKit
 
-import UIKit
+enum USCellActionType: UInt {
+    case edit
+    case move
+}
 
 class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSource {
     var cellClass: USBaseTableCell.Type = USBaseTableCell.self
@@ -21,7 +24,7 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
     var collectionSupplementaryCreationBlock: ((String, Any, IndexPath) -> Any)?
     var tableActionBlock: ((USCellActionType, UITableView, IndexPath) -> Bool)?
     var tableDeletionBlock: ((USBaseDataSource, UITableView, IndexPath) -> Void)?
-    var tableView: UITableView! {
+    var tableView: UITableView? {
         didSet {
             if let tableView = tableView {
                 tableView.dataSource = self
@@ -29,7 +32,7 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
             updateEmptyView()
         }
     }
-    var collectionView: UICollectionView! {
+    var collectionView: UICollectionView? {
         didSet {
             if let collectionView = collectionView {
                 collectionView.dataSource = self
@@ -67,13 +70,13 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
         collectionSupplementaryCreationBlock = nil
         tableActionBlock = nil
         tableDeletionBlock = nil
-        tableView.dataSource = nil
-        collectionView.dataSource = nil
+        tableView?.dataSource = nil
+        collectionView?.dataSource = nil
     }
     
     // MARK: - USBaseDataSource
     
-    func item(at indexPath: IndexPath) -> Any {
+    func item(at indexPath: IndexPath) -> Any? {
         fatalError("Subclass must override this method")
     }
     
@@ -99,8 +102,7 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
         for section in 0..<numberOfSections() {
             for row in 0..<numberOfItems(inSection: section) {
                 let indexPath = IndexPath(row: row, section: section)
-                
-                if item(at: indexPath) as AnyObject === item as AnyObject {
+                if self.item(at: indexPath) as AnyObject === item as AnyObject {
                     return indexPath
                 }
             }
@@ -109,58 +111,37 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
         return nil
     }
     
-    func enumerateItems(with itemBlock: ((IndexPath, Any, inout Bool) -> Void)?) {
-        if itemBlock == nil {
-            return
-        }
-        
-        var stop = false
-        
-        let dataSource = currentFilter ?? self
-        
-        for i in 0..<numberOfSections() {
-            for j in 0..<numberOfItems(inSection: i) {
-                let indexPath = IndexPath(row: j, section: i)
-                let item = dataSource.item(at: indexPath)
-                
-                itemBlock?(indexPath, item, &stop)
-                
-                if stop {
-                    break
-                }
-            }
-            
-            if stop {
-                break
-            }
-        }
+    func enumerateItems(with itemBlock: ((USDataSourceEnumerator) -> Void)?) {
+//        if itemBlock == nil {
+//            return
+//        }
+//
+//        var stop = false
+//        let dataSource: USDataSourceItemAccess = currentFilter ?? self
+//        let dataSource = currentFilter ?? self
+//
+//        for i in 0..<numberOfSections() {
+//            for j in 0..<numberOfItems(inSection: i) {
+//                let indexPath = IndexPath(row: j, section: i)
+//                let item = dataSource.item(at: indexPath)
+//
+//                itemBlock?(indexPath, item, &stop)
+//
+//                if stop {
+//                    break
+//                }
+//            }
+//
+//            if stop {
+//                break
+//            }
+//        }
     }
     
-    func reload() {
-        tableView.reloadData()
-        collectionView.reloadData()
-        updateEmptyView()
-    }
-    
-    // MARK: - Empty View
-    
-    func updateEmptyView() {
-        if let emptyView = emptyView {
-            emptyView.isHidden = numberOfItems() != 0
-        }
-        
-        if tableView != nil {
-            let isEmpty = numberOfItems() == 0
-            let shouldHideSeparators = isEmpty && cachedSeparatorStyle != .none
-            
-            if shouldHideSeparators {
-                cachedSeparatorStyle = tableView.separatorStyle
-                tableView.separatorStyle = .none
-            } else if !shouldHideSeparators && cachedSeparatorStyle != .none {
-                tableView.separatorStyle = cachedSeparatorStyle
-                cachedSeparatorStyle = .none
-            }
-        }
+    func reloadData() {
+        currentFilter = nil
+        tableView?.reloadData()
+        collectionView?.reloadData()
     }
     
     // MARK: - Cell Configuration
@@ -208,5 +189,180 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return numberOfSections()
     }
+
+    func collectionView(_ cv: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        var supplementaryView: UICollectionReusableView?
+        
+        if let creationBlock = collectionSupplementaryCreationBlock {
+            supplementaryView = creationBlock(kind, cv, indexPath) as? UICollectionReusableView
+        } else {
+            supplementaryView = collectionViewSupplementaryElementClass.supplementaryView(for: cv, kind: kind, indexPath: indexPath)
+        }
+        
+        if supplementaryView == nil {
+            supplementaryView = collectionViewSupplementaryElementClass.supplementaryView(for: cv, kind: kind, indexPath: indexPath)
+        }
+        
+        if let configureBlock = collectionSupplementaryConfigureBlock {
+            configureBlock(supplementaryView, kind, cv, indexPath)
+        }
+        
+        return supplementaryView!
+    }
+
+    func setEmptyView(_ emptyView: UIView) {
+        if let currentEmptyView = self.emptyView {
+            currentEmptyView.removeFromSuperview()
+        }
+        
+        self.emptyView = emptyView
+        emptyView.isHidden = true
+        
+        updateEmptyView()
+    }
+
+    func updateEmptyView() {
+        guard let emptyView = self.emptyView else {
+            return
+        }
+        
+        let tableView = self.tableView
+        let collectionView = self.collectionView
+        let targetView = tableView ?? collectionView
+        
+        guard let targetView = targetView else {
+            return
+        }
+        
+        if emptyView.superview != targetView {
+            targetView.addSubview(emptyView)
+        }
+        
+        let shouldShowEmptyView = numberOfItems() == 0
+        let isShowingEmptyView = !emptyView.isHidden
+        
+        if shouldShowEmptyView {
+            if tableView?.separatorStyle != .none {
+//                cachedSeparatorStyle = UITableViewCell.SeparatorStyle(rawValue: (tableView?.separatorStyle)) ?? .none
+                tableView?.separatorStyle = .none
+            }
+        } else if cachedSeparatorStyle != .none {
+            tableView?.separatorStyle = cachedSeparatorStyle
+        }
+        
+        if shouldShowEmptyView == isShowingEmptyView {
+            return
+        }
+        
+        if emptyView.frame == .zero {
+            var frame = targetView.bounds.inset(by: targetView.contentInset)
+            
+            if let tableHeaderView = tableView?.tableHeaderView {
+                frame.size.height -= tableHeaderView.frame.height
+            }
+            
+            emptyView.frame = frame
+            emptyView.autoresizingMask = targetView.autoresizingMask
+        }
+        
+        emptyView.isHidden = !shouldShowEmptyView
+        
+        if shouldShowEmptyView {
+            collectionView?.reloadData()
+        }
+    }
+
+    static func indexPathArray(with indexSet: IndexSet, inSection section: Int) -> [IndexPath] {
+        var ret = [IndexPath]()
+        
+        indexSet.forEach { index in
+            ret.append(IndexPath(row: index, section: section))
+        }
+        return ret
+    }
+
+
+    static func indexPathArray(with range: NSRange, inSection section: Int) -> [IndexPath] {
+        let indexSet = IndexSet(integersIn: range.location..<(range.location + range.length))
+        return indexPathArray(with: indexSet, inSection: section)
+    }
+
+    func insertCells(at indexPaths: [IndexPath]) {
+        // Save the tableview content offset
+        let tableViewOffset = tableView?.contentOffset
+        
+        // Turn off animations for the update block
+        // to get the effect of adding rows on top of TableView
+        UIView.setAnimationsEnabled(false)
+        
+        tableView?.beginUpdates()
+        
+        var rowsInsertIndexPath = [IndexPath]()
+        
+        for indexPath in indexPaths {
+            rowsInsertIndexPath.append(indexPath)
+        }
+        
+        tableView?.insertRows(at: indexPaths, with: rowAnimation)
+        
+        collectionView?.insertItems(at: indexPaths)
+        
+        tableView?.endUpdates()
+        
+        UIView.setAnimationsEnabled(true)
+        
+        tableView?.setContentOffset(tableViewOffset ?? CGPoint.zero, animated: false)
+        
+        updateEmptyView()
+    }
+
+    func deleteCells(at indexPaths: [IndexPath]) {
+        tableView?.deleteRows(at: indexPaths, with: rowAnimation)
+        
+        collectionView?.deleteItems(at: indexPaths)
+        
+        updateEmptyView()
+    }
+
+    func reloadCells(at indexPaths: [IndexPath]) {
+        tableView?.reloadRows(at: indexPaths, with: rowAnimation)
+        
+        collectionView?.reloadItems(at: indexPaths)
+    }
+
+    func moveCell(at index1: IndexPath, to index2: IndexPath) {
+        tableView?.moveRow(at: index1, to: index2)
+        
+        collectionView?.moveItem(at: index1, to: index2)
+    }
+
+    func moveSection(at index1: Int, to index2: Int) {
+        tableView?.moveSection(index1, toSection: index2)
+        
+        collectionView?.moveSection(index1, toSection: index2)
+    }
+
+    func insertSections(at indexes: IndexSet) {
+        tableView?.insertSections(indexes, with: rowAnimation)
+        
+        collectionView?.insertSections(indexes)
+        
+        updateEmptyView()
+    }
+
+    func deleteSections(at indexes: IndexSet) {
+        tableView?.deleteSections(indexes, with: rowAnimation)
+        
+        collectionView?.deleteSections(indexes)
+        
+        updateEmptyView()
+    }
+
+    func reloadSections(at indexes: IndexSet) {
+        tableView?.reloadSections(indexes, with: rowAnimation)
+
+        collectionView?.reloadSections(indexes)
+    }
+
 }
 

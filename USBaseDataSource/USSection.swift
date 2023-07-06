@@ -9,12 +9,22 @@ import Foundation
 import UIKit
 
 class USSection: NSObject, NSCopying {
-    static func sectionWithItems(_ items: [Any]?) -> Self {
+    override init() {
+        super.init()
+        items = []
+        headerClass = USBaseHeaderFooterView.self
+        footerClass = USBaseHeaderFooterView.self
+        headerHeight = UITableView.automaticDimension
+        footerHeight = UITableView.automaticDimension
+        isExpanded = true
+    }
+
+    static func sectionWithItems(_ items: [Any]?) -> USSection {
         return sectionWithItems(items, header: nil, footer: nil, identifier: nil)
     }
-    
-    static func sectionWithItems(_ items: [Any]?, header: String?, footer: String?, identifier: Any?) -> Self {
-        let section = self.init()
+
+    static func sectionWithItems(_ items: [Any]?, header: String?, footer: String?, identifier: Any?) -> USSection {
+        let section = USSection()
         
         if let items = items {
             section.items.addObjects(from: items)
@@ -23,7 +33,7 @@ class USSection: NSObject, NSCopying {
         section.header = header
         section.footer = footer
         section.sectionIdentifier = identifier
-        
+      
         return section
     }
     
@@ -38,14 +48,14 @@ class USSection: NSObject, NSCopying {
             array.append(i)
         }
         
-        return sectionWithItems(array, header: header, footer: footer, identifier: identifier)
+        return sectionWithItems(array, header: header, footer: footer, identifier: identifier) as! Self
     }
     
-    var numberOfItems: UInt {
-        return UInt(items.count)
+    var numberOfItems: Int {
+        return items.count
     }
     
-    func itemAtIndex(_ index: UInt) -> Any? {
+    func itemAtIndex(_ index: Int) -> Any? {
         guard index < numberOfItems else {
             return nil
         }
@@ -61,12 +71,8 @@ class USSection: NSObject, NSCopying {
     var footerClass: AnyClass = USBaseHeaderFooterView.self
     var headerHeight: CGFloat = UITableView.automaticDimension
     var footerHeight: CGFloat = UITableView.automaticDimension
-    private(set) var expanded: Bool = true
+    private(set) var isExpanded: Bool = true
     
-    override init() {
-        super.init()
-        expanded = true
-    }
     
     class func identifier() -> String {
         return String(describing: self)

@@ -5,6 +5,18 @@
 //  Created by Umair Suraj on 05/07/2023.
 //
 
+import UIKit
+import CoreData
+
+class USArrayDataSourceItemsContainer: NSObject {
+    var items: [Any]
+    init(items: [Any]) {
+        self.items = items
+        super.init()
+    }
+}
+
+
 private var USArrayKeyPathDataSourceContext = "USArrayKeyPathDataSourceContext"
 
 class USArrayDataSource: USBaseDataSource {
@@ -38,7 +50,7 @@ class USArrayDataSource: USBaseDataSource {
         return items!
     }
     
-    override var numberOfSections: Int {
+    override func numberOfSections() -> Int {
         return 1
     }
     
@@ -46,7 +58,7 @@ class USArrayDataSource: USBaseDataSource {
         return numberOfItems()
     }
     
-    func numberOfItems() -> Int {
+    override func numberOfItems() -> Int {
         if let currentFilter = currentFilter {
             return currentFilter.numberOfItems()
         } else {
@@ -105,7 +117,7 @@ class USArrayDataSource: USBaseDataSource {
             return
         }
         
-        mutableItems.insert(newItems, atIndexes: indexes)
+        mutableItems.insert(newItems, at: indexes)
     }
     
     func replaceItem(at index: Int, with item: Any) {
@@ -118,8 +130,12 @@ class USArrayDataSource: USBaseDataSource {
     }
     
     func replaceItems(atIndexes indexes: IndexSet, withItemsFromArray array: [Any]?) {
-        mutableItems.replaceObjects(atIndexes: indexes, with: array)
+        guard let array = array else {
+            return
+        }
+        mutableItems.replaceObjects(at: indexes, with: array)
     }
+
     
     // MARK: - Moving Items
 
@@ -132,7 +148,7 @@ class USArrayDataSource: USBaseDataSource {
         }
         
         unregisterKVO()
-        items?.removeObject(item)
+        items?.remove(item)
         items?.insert(item, at: Int(index2))
         
         moveCell(at: indexPath1, to: indexPath2)
@@ -158,15 +174,6 @@ class USArrayDataSource: USBaseDataSource {
         items?.removeObjects(in: itemsToRemove)
     }
 
-    // MARK: - Item Searching
-
-    func indexPath(forItemWithId itemId: NSManagedObjectID) -> IndexPath? {
-        if let row = items?.firstIndex(where: { ($0 as? NSManagedObject)?.objectID == itemId }) {
-            return IndexPath(row: row, section: 0)
-        }
-        return nil
-    }
-
     // MARK: - UITableViewDataSource
 
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
@@ -175,7 +182,7 @@ class USArrayDataSource: USBaseDataSource {
         }
         
         unregisterKVO()
-        items?.removeObject(item)
+        items?.remove(item)
         items?.insert(item, at: destinationIndexPath.row)
         registerKVO()
     }

@@ -20,6 +20,10 @@ class USBaseHeaderFooterView: UITableViewHeaderFooterView {
         self.init(reuseIdentifier: type(of: self).identifier())
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func configureView(for dataSource: Any) {
         // override me.
     }
