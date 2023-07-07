@@ -20,14 +20,7 @@ class USExpandingDataSource: USSectionedDataSource {
     }
     
     func isItemVisible(at indexPath: IndexPath) -> Bool {
-        guard let section = sectionAtIndex(index: indexPath.section) else {
-            return false
-        }
-        
-        let rowCount = numberOfItems(inSection: indexPath.section)
-        let collapsedRowCount = numberOfCollapsedRows(inSection: indexPath.section)
-        
-        return indexPath.row < rowCount && indexPath.row < collapsedRowCount
+        return indexPath.row < numberOfItems(inSection: indexPath.section)
     }
     
     func expandedSectionIndexes() -> IndexSet {
@@ -42,12 +35,11 @@ class USExpandingDataSource: USSectionedDataSource {
         return expandedIndexes
     }
     
-    func numberOfCollapsedRows(inSection section: Int) -> Int {
-        if let collapsedSectionCountBlock = collapsedSectionCountBlock,
-           let section = sectionAtIndex(index: section) {
-            return collapsedSectionCountBlock(section, section)
+    func numberOfCollapsedRows(inSection sectionIndex: Int) -> Int {
+        if let collapsedSectionCountBlock = collapsedSectionCountBlock {
+            let section = sectionAtIndex(index: sectionIndex)
+            return collapsedSectionCountBlock(section, sectionIndex)
         }
-        
         return 0
     }
     
@@ -70,9 +62,7 @@ class USExpandingDataSource: USSectionedDataSource {
             return
         }
         
-        guard let section = sectionAtIndex(index: index) else {
-            return
-        }
+        let section = sectionAtIndex(index: index)
         
         let targetRowCount = expanded ? section.numberOfItems : numberOfCollapsedRows(inSection: index)
         let currentRowCount = numberOfItems(inSection: index)
@@ -81,10 +71,10 @@ class USExpandingDataSource: USSectionedDataSource {
         
         if expanded {
             let indexPaths = IndexPath.array(withRange: NSMakeRange(currentRowCount, targetRowCount - currentRowCount), inSection: index)
-            insertCells(atIndexPaths: indexPaths)
+            insertCells(at: indexPaths)
         } else {
             let indexPaths = IndexPath.array(withRange: NSMakeRange(targetRowCount, currentRowCount - targetRowCount), inSection: index)
-            deleteCells(atIndexPaths: indexPaths)
+            deleteCells(at: indexPaths)
         }
     }
     
@@ -108,19 +98,17 @@ class USExpandingDataSource: USSectionedDataSource {
         insertItems(items, atIndexes: indexes, inSection: section)
     }
     
-    func insertItems(_ items: [Any], atIndexes indexes: IndexSet, inSection section: Int) {
-        guard let section = sectionAtIndex(index: section) else {
-            return
-        }
+    func insertItems(_ items: [Any], atIndexes indexes: IndexSet, inSection sectionIndex: Int) {
+        let section = sectionAtIndex(index: sectionIndex)
         
-        section.items.insert(items, atIndexes: indexes)
+        section.items.insert(items, at: indexes)
         
-        let potentialIndexes = IndexPath.array(withIndexSet: indexes, inSection: section)
+        let potentialIndexes = IndexPath.array(withIndexSet: indexes, inSection: sectionIndex)
         
         performBatchUpdates {
             potentialIndexes.forEach { indexPath in
                 if isItemVisible(at: indexPath) {
-                    insertCells(atIndexPaths: [indexPath])
+                    insertCells(at: [indexPath])
                 }
             }
         }
@@ -129,9 +117,7 @@ class USExpandingDataSource: USSectionedDataSource {
     // MARK: - Replacing
     
     func replaceItem(at indexPath: IndexPath, with item: Any) {
-        guard let section = sectionAtIndex(index: indexPath.section) else {
-            return
-        }
+        let section = sectionAtIndex(index: indexPath.section)
         
         section.items.removeObject(at: indexPath.row)
         section.items.insert(item, at: indexPath.row)
@@ -151,17 +137,15 @@ class USExpandingDataSource: USSectionedDataSource {
         removeItems(atIndexes: IndexSet(integersIn: range.location..<NSMaxRange(range)), inSection: section)
     }
     
-    func removeItems(atIndexes indexes: IndexSet, inSection section: Int) {
-        guard let section = sectionAtIndex(index: section) else {
-            return
-        }
+    func removeItems(atIndexes indexes: IndexSet, inSection sectionIndex: Int) {
+        let section = sectionAtIndex(index: sectionIndex)
         
         section.items.removeObjects(at: indexes)
         
         if shouldRemoveEmptySections && section.numberOfItems == 0 {
-            removeSection(at: section)
+            removeSection(at: sectionIndex)
         } else {
-            let potentialIndexes = IndexPath.array(withIndexSet: indexes, inSection: section)
+            let potentialIndexes = IndexPath.array(withIndexSet: indexes, inSection: sectionIndex)
             
             performBatchUpdates {
                 potentialIndexes.forEach { indexPath in
@@ -189,8 +173,8 @@ extension IndexPath {
         return (range.location..<NSMaxRange(range)).map { IndexPath(row: $0, section: section) }
     }
     
-    static func array(withIndexSet indexSet: IndexSet, inSection section: USSection) -> [IndexPath] {
-        return indexSet.map { IndexPath(row: $0, section: section.sectionIndex) }
+    static func array(withIndexSet indexSet: IndexSet, inSection sectionIndex: Int) -> [IndexPath] {
+        return indexSet.map { IndexPath(row: $0, section: sectionIndex) }
     }
 }
 

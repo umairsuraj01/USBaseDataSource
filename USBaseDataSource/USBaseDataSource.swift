@@ -363,6 +363,104 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
 
         collectionView?.reloadSections(indexes)
     }
+    
+    func setCurrentFilter(_ newFilter: USResultsFilter?) {
+        let currentFilter = self.currentFilter
+        
+        var inserts = [IndexPath]()
+        var deletes = [IndexPath]()
+        
+        if newFilter == nil && currentFilter != nil {
+            self.currentFilter = nil
+            
+            // Restore objects that did not pass the current filter.
+//            enumerateItems { (indexPath, item, stop) in
+//                if !currentFilter!.filterPredicate.evaluate(with: item) {
+//                    inserts.append(indexPath)
+//                }
+//            }
+            
+            if inserts.count > 0 {
+                insertCells(at: inserts)
+            }
+        } else if newFilter != nil && currentFilter == nil {
+            // No current filter. Remove any object not passing the new filter.
+//            newFilter!.sections.removeAllObjects()
+//
+//            for i in 0..<numberOfSections {
+//                var sectionItems = [Any]()
+//
+//                for j in 0..<numberOfItems(inSection: i) {
+//                    let indexPath = IndexPath(row: j, section: i)
+//                    let item = itemAtIndexPath(indexPath)
+//
+//                    if !newFilter!.filterPredicate.evaluate(with: item) {
+//                        deletes.append(indexPath)
+//                    } else {
+//                        sectionItems.append(item)
+//                    }
+//                }
+//
+//                newFilter!.sections.add(sectionItems)
+//            }
+            
+            self.currentFilter = newFilter
+            
+            if deletes.count > 0 {
+                deleteCells(at: deletes)
+            }
+        } else if newFilter != nil && currentFilter != nil {
+            // Changing active filter
+            
+//            enumerateItems { (indexPath, item, stop) in
+//                deletes.append(indexPath)
+//            }
+            
+//            newFilter!.sections.removeAllObjects()
+//            
+//            self.currentFilter = nil
+//            
+//            for i in 0..<numberOfSections() {
+//                var sectionItems = [Any]()
+//                
+//                for j in 0..<numberOfItems(inSection: i) {
+//                    let indexPath = IndexPath(row: j, section: i)
+//                    let item = item(at: indexPath)
+//                    if newFilter!.filterPredicate.evaluate(with: item) {
+//                        inserts.append(IndexPath(row: sectionItems.count, section: i))
+//                        sectionItems.append(item)
+//                    }
+//                }
+//                
+//                newFilter!.sections.add(sectionItems)
+//            }
+            
+            self.currentFilter = newFilter
+            
+            let processIndexUpdatesBlock = {
+                if deletes.count > 0 {
+                    self.deleteCells(at: deletes)
+                }
+                
+                if inserts.count > 0 {
+                    self.insertCells(at: inserts)
+                }
+            }
+            
+            if let tableView = self.tableView {
+                tableView.beginUpdates()
+                processIndexUpdatesBlock()
+                tableView.endUpdates()
+            }
+            
+            if let collectionView = self.collectionView {
+                collectionView.performBatchUpdates({
+                    processIndexUpdatesBlock()
+                }, completion: nil)
+            }
+        }
+    }
+
 
 }
 

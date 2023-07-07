@@ -71,7 +71,7 @@ class USSection: NSObject, NSCopying {
     var footerClass: AnyClass = USBaseHeaderFooterView.self
     var headerHeight: CGFloat = UITableView.automaticDimension
     var footerHeight: CGFloat = UITableView.automaticDimension
-    private(set) var isExpanded: Bool = true
+    var isExpanded: Bool = true
     
     
     class func identifier() -> String {

@@ -189,18 +189,16 @@ class USArrayDataSource: USBaseDataSource {
 
     // MARK: - Key-value observing
 
-    private let USArrayKeyPathDataSourceContext = UnsafeMutableRawPointer(mutating: "USArrayKeyPathDataSourceContext")
-
     func registerKVO() {
-        target?.addObserver(self, forKeyPath: keyPath, options: .initial, context: USArrayKeyPathDataSourceContext)
+        target?.addObserver(self, forKeyPath: keyPath, options: .initial, context: &USArrayKeyPathDataSourceContext)
     }
 
     func unregisterKVO() {
-        target?.removeObserver(self, forKeyPath: keyPath, context: USArrayKeyPathDataSourceContext)
+        target?.removeObserver(self, forKeyPath: keyPath, context: &USArrayKeyPathDataSourceContext)
     }
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        guard let keyPath = keyPath, let change = change, context == USArrayKeyPathDataSourceContext else {
+        guard let keyPath = keyPath, let change = change, context == &USArrayKeyPathDataSourceContext else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
             return
         }

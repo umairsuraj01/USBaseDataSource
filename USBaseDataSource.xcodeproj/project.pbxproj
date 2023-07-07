@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08A3CC042A582D9100388272 /* ExtensionUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3CC032A582D9100388272 /* ExtensionUICollectionView.swift */; };
+		08A3CC062A582DAF00388272 /* ExtensionUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A3CC052A582DAF00388272 /* ExtensionUITableView.swift */; };
 		08CB9E4D2A55AC04009643FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E4C2A55AC04009643FD /* AppDelegate.swift */; };
 		08CB9E4F2A55AC04009643FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E4E2A55AC04009643FD /* SceneDelegate.swift */; };
 		08CB9E512A55AC04009643FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB9E502A55AC04009643FD /* ViewController.swift */; };
@@ -49,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08A3CC032A582D9100388272 /* ExtensionUICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUICollectionView.swift; sourceTree = "<group>"; };
+		08A3CC052A582DAF00388272 /* ExtensionUITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUITableView.swift; sourceTree = "<group>"; };
 		08CB9E492A55AC04009643FD /* USBaseDataSource.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USBaseDataSource.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08CB9E4C2A55AC04009643FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08CB9E4E2A55AC04009643FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +138,8 @@
 				08CB9E5D2A55AC07009643FD /* Info.plist */,
 				08CB9E552A55AC04009643FD /* USBaseDataSource.xcdatamodeld */,
 				08CB9E7F2A55AC96009643FD /* USBaseDataSource.swift */,
+				08A3CC032A582D9100388272 /* ExtensionUICollectionView.swift */,
+				08A3CC052A582DAF00388272 /* ExtensionUITableView.swift */,
 				08CB9E812A55AD13009643FD /* USBaseCollectionReusableView.swift */,
 				08CB9E832A55AD49009643FD /* USSectionedDataSource.swift */,
 				08CB9E852A55AD5A009643FD /* USDataSourceItemAccess.swift */,
@@ -302,11 +308,13 @@
 				08CB9E512A55AC04009643FD /* ViewController.swift in Sources */,
 				08CB9E842A55AD49009643FD /* USSectionedDataSource.swift in Sources */,
 				08CB9E922A55ADBE009643FD /* USExpandingDataSource.swift in Sources */,
+				08A3CC062A582DAF00388272 /* ExtensionUITableView.swift in Sources */,
 				08CB9E862A55AD5A009643FD /* USDataSourceItemAccess.swift in Sources */,
 				08CB9E882A55AD68009643FD /* USResultsFilter.swift in Sources */,
 				08CB9E8C2A55AD8E009643FD /* USBaseHeaderFooterView.swift in Sources */,
 				08CB9E4D2A55AC04009643FD /* AppDelegate.swift in Sources */,
 				08CB9E982A55AE16009643FD /* USCoreDataSource.swift in Sources */,
+				08A3CC042A582D9100388272 /* ExtensionUICollectionView.swift in Sources */,
 				08CB9E902A55ADB0009643FD /* USSection.swift in Sources */,
 				08CB9E962A55AE03009643FD /* USBaseTableCell.swift in Sources */,
 				08CB9E942A55ADCE009643FD /* USArrayDataSource.swift in Sources */,

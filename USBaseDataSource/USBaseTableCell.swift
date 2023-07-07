@@ -26,22 +26,23 @@ class USBaseTableCell: UITableViewCell {
      */
     class func cellForTableView(_ tableView: UITableView) -> Self {
         let identifier = String(describing: self)
-        var cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? Self
-        
-        if cell == nil {
-            cell = self.init(style: self.cellStyle, reuseIdentifier: identifier)
-            cell?.configureCell()
-        }
-        
+        var cell = tableView.dequeueReusableCell(withIdentifier: self.identifier()) as? Self
+
+//        if cell == nil {
+//            cell = self.init(style: self.cellStyle, reuseIdentifier: self.identifier())
+//            cell?.configureCell()
+//        }
+
         return cell!
     }
+
     
     /**
      *  Cell's identifier. You probably don't need to override me.
      *
      *  @return an identifier for this cell class
      */
-    class var identifier: String {
+    class func identifier() -> String {
         return String(describing: self)
     }
     

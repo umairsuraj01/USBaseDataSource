@@ -132,10 +132,11 @@ class USSectionedDataSource: USBaseDataSource {
     func removeSection(at index: Int) {
         removeSections(at: IndexSet(integer: index))
     }
-
+    
     func removeSections(in range: NSRange) {
-        removeSections(at: IndexSet(integersIn: range.toRange() ?? 0..<0))
+        removeSections(at: IndexSet(integersIn: Range(range) ?? 0..<0))
     }
+
     
     func removeSections(at indexes: IndexSet) {
         let sortedIndexes = indexes.sorted().reversed()
@@ -155,9 +156,9 @@ class USSectionedDataSource: USBaseDataSource {
     func removeItem(at indexPath: IndexPath) {
         removeItems(at: IndexSet(integer: indexPath.row), in: indexPath.section)
     }
-
+    
     func removeItems(in range: NSRange, in section: Int) {
-        removeItems(at: IndexSet(integersIn: range.toRange() ?? 0..<0), in: section)
+        removeItems(at: IndexSet(integersIn: Range(range) ?? 0..<0), in: section)
     }
 
     func removeItems(at indexes: IndexSet, in section: Int) {

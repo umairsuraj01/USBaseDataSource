@@ -200,7 +200,7 @@ class USCoreDataSource: USBaseDataSource, NSFetchedResultsControllerDelegate {
     }
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        lastFilter = currentFilter
+        lastFilter = currentFilter as? USResultsFilter
         setCurrentFilter(nil)
         tableView?.beginUpdates()
     }
@@ -211,7 +211,13 @@ class USCoreDataSource: USBaseDataSource, NSFetchedResultsControllerDelegate {
                     for type: NSFetchedResultsChangeType,
                     newIndexPath: IndexPath?) {
         guard let tableView = self.tableView else { return }
-        self.collectionView?.addChange(forObjectAt: indexPath, forChangeType: type, newIndexPath: newIndexPath)
+        guard indexPath != nil else {
+            return
+        }
+        guard newIndexPath != nil else {
+            return
+        }
+        self.collectionView?.addChange(forObjectAt: indexPath!, forChangeType: type, newIndexPath: newIndexPath)
         
         switch type {
         case .insert:
@@ -241,7 +247,7 @@ class USCoreDataSource: USBaseDataSource, NSFetchedResultsControllerDelegate {
                     at sectionIndex: Int,
                     for type: NSFetchedResultsChangeType) {
         guard let tableView = self.tableView else { return }
-        self.collectionView?.addChange(forSection: sectionInfo, atIndex: sectionIndex, forChangeType: type)
+        self.collectionView?.addChange(for: sectionInfo, at: sectionIndex, forChangeType: type)
         
         switch type {
         case .insert:
