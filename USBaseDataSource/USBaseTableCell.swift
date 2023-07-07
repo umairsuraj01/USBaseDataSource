@@ -28,10 +28,10 @@ class USBaseTableCell: UITableViewCell {
         let identifier = String(describing: self)
         var cell = tableView.dequeueReusableCell(withIdentifier: self.identifier()) as? Self
 
-//        if cell == nil {
-//            cell = self.init(style: self.cellStyle, reuseIdentifier: self.identifier())
-//            cell?.configureCell()
-//        }
+        if cell == nil {
+            cell = self.init(style: self.cellStyle, reuseIdentifier: self.identifier())
+            cell?.configureCell()
+        }
 
         return cell!
     }

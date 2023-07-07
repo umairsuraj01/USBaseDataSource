@@ -12,7 +12,7 @@ enum USCellActionType: UInt {
     case move
 }
 
-class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSource {
+class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSource, USDataSourceItemAccess {
     var cellClass: USBaseTableCell.Type = USBaseTableCell.self
     var collectionViewSupplementaryElementClass: USBaseCollectionReusableView.Type = USBaseCollectionReusableView.self
     var rowAnimation: UITableView.RowAnimation = .automatic
@@ -111,32 +111,35 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
         return nil
     }
     
-    func enumerateItems(with itemBlock: ((USDataSourceEnumerator) -> Void)?) {
-//        if itemBlock == nil {
-//            return
-//        }
-//
-//        var stop = false
-//        let dataSource: USDataSourceItemAccess = currentFilter ?? self
-//        let dataSource = currentFilter ?? self
-//
-//        for i in 0..<numberOfSections() {
-//            for j in 0..<numberOfItems(inSection: i) {
-//                let indexPath = IndexPath(row: j, section: i)
-//                let item = dataSource.item(at: indexPath)
-//
-//                itemBlock?(indexPath, item, &stop)
-//
-//                if stop {
-//                    break
-//                }
-//            }
-//
-//            if stop {
-//                break
-//            }
-//        }
+    func enumerateItems(with itemBlock: USDataSourceEnumerator?) {
+        if itemBlock == nil {
+            return
+        }
+        
+        var stop = false
+        let dataSource = currentFilter
+        
+        for i in 0..<numberOfSections() {
+            for j in 0..<numberOfItems(inSection: i) {
+                let indexPath = IndexPath(row: j, section: i)
+                let item = dataSource?.item(at: indexPath)
+                
+                if let unwrappedItem = item {
+                    itemBlock!(indexPath, unwrappedItem, &stop)
+                }
+                
+                if stop {
+                    break
+                }
+            }
+            
+            if stop {
+                break
+            }
+        }
     }
+    
+    
     
     func reloadData() {
         currentFilter = nil
@@ -161,7 +164,7 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         
         let item = self.item(at: indexPath)
-        configureCell(cell, for: item, parentView: tableView, indexPath: indexPath)
+        configureCell(cell, for: item as Any, parentView: tableView, indexPath: indexPath)
         
         return cell
     }
@@ -181,7 +184,7 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
         
         let item = self.item(at: indexPath)
-        configureCell(cell, for: item, parentView: collectionView, indexPath: indexPath)
+        configureCell(cell, for: item as Any, parentView: collectionView, indexPath: indexPath)
         
         return cell
     }
@@ -189,7 +192,7 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return numberOfSections()
     }
-
+    
     func collectionView(_ cv: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         var supplementaryView: UICollectionReusableView?
         
@@ -204,12 +207,12 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
         }
         
         if let configureBlock = collectionSupplementaryConfigureBlock {
-            configureBlock(supplementaryView, kind, cv, indexPath)
+            configureBlock(supplementaryView as Any, kind, cv, indexPath)
         }
         
         return supplementaryView!
     }
-
+    
     func setEmptyView(_ emptyView: UIView) {
         if let currentEmptyView = self.emptyView {
             currentEmptyView.removeFromSuperview()
@@ -220,7 +223,7 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
         
         updateEmptyView()
     }
-
+    
     func updateEmptyView() {
         guard let emptyView = self.emptyView else {
             return
@@ -242,14 +245,14 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
         let isShowingEmptyView = !emptyView.isHidden
         
         if shouldShowEmptyView {
-            if tableView?.separatorStyle != .none {
-//                cachedSeparatorStyle = UITableViewCell.SeparatorStyle(rawValue: (tableView?.separatorStyle)) ?? .none
+            if let separatorStyle = tableView?.separatorStyle, separatorStyle != .none {
+                self.cachedSeparatorStyle = separatorStyle
                 tableView?.separatorStyle = .none
             }
         } else if cachedSeparatorStyle != .none {
             tableView?.separatorStyle = cachedSeparatorStyle
         }
-        
+
         if shouldShowEmptyView == isShowingEmptyView {
             return
         }
@@ -271,7 +274,7 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
             collectionView?.reloadData()
         }
     }
-
+    
     static func indexPathArray(with indexSet: IndexSet, inSection section: Int) -> [IndexPath] {
         var ret = [IndexPath]()
         
@@ -280,13 +283,13 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
         }
         return ret
     }
-
-
+    
+    
     static func indexPathArray(with range: NSRange, inSection section: Int) -> [IndexPath] {
         let indexSet = IndexSet(integersIn: range.location..<(range.location + range.length))
         return indexPathArray(with: indexSet, inSection: section)
     }
-
+    
     func insertCells(at indexPaths: [IndexPath]) {
         // Save the tableview content offset
         let tableViewOffset = tableView?.contentOffset
@@ -315,7 +318,7 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
         
         updateEmptyView()
     }
-
+    
     func deleteCells(at indexPaths: [IndexPath]) {
         tableView?.deleteRows(at: indexPaths, with: rowAnimation)
         
@@ -323,25 +326,25 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
         
         updateEmptyView()
     }
-
+    
     func reloadCells(at indexPaths: [IndexPath]) {
         tableView?.reloadRows(at: indexPaths, with: rowAnimation)
         
         collectionView?.reloadItems(at: indexPaths)
     }
-
+    
     func moveCell(at index1: IndexPath, to index2: IndexPath) {
         tableView?.moveRow(at: index1, to: index2)
         
         collectionView?.moveItem(at: index1, to: index2)
     }
-
+    
     func moveSection(at index1: Int, to index2: Int) {
         tableView?.moveSection(index1, toSection: index2)
         
         collectionView?.moveSection(index1, toSection: index2)
     }
-
+    
     func insertSections(at indexes: IndexSet) {
         tableView?.insertSections(indexes, with: rowAnimation)
         
@@ -349,7 +352,7 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
         
         updateEmptyView()
     }
-
+    
     func deleteSections(at indexes: IndexSet) {
         tableView?.deleteSections(indexes, with: rowAnimation)
         
@@ -357,10 +360,10 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
         
         updateEmptyView()
     }
-
+    
     func reloadSections(at indexes: IndexSet) {
         tableView?.reloadSections(indexes, with: rowAnimation)
-
+        
         collectionView?.reloadSections(indexes)
     }
     
@@ -374,35 +377,34 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
             self.currentFilter = nil
             
             // Restore objects that did not pass the current filter.
-//            enumerateItems { (indexPath, item, stop) in
-//                if !currentFilter!.filterPredicate.evaluate(with: item) {
-//                    inserts.append(indexPath)
-//                }
-//            }
+            enumerateItems { (indexPath, item, stop) in
+                if !((currentFilter as? USResultsFilter)?.filterPredicate?.evaluate(with: item) ?? false) {
+                    inserts.append(indexPath)
+                }
+            }
             
             if inserts.count > 0 {
                 insertCells(at: inserts)
             }
         } else if newFilter != nil && currentFilter == nil {
             // No current filter. Remove any object not passing the new filter.
-//            newFilter!.sections.removeAllObjects()
-//
-//            for i in 0..<numberOfSections {
-//                var sectionItems = [Any]()
-//
-//                for j in 0..<numberOfItems(inSection: i) {
-//                    let indexPath = IndexPath(row: j, section: i)
-//                    let item = itemAtIndexPath(indexPath)
-//
-//                    if !newFilter!.filterPredicate.evaluate(with: item) {
-//                        deletes.append(indexPath)
-//                    } else {
-//                        sectionItems.append(item)
-//                    }
-//                }
-//
-//                newFilter!.sections.add(sectionItems)
-//            }
+            newFilter!.sections.removeAllObjects()
+            
+            for i in 0..<numberOfSections() {
+                var sectionItems = [Any]()
+                
+                for j in 0..<numberOfItems(inSection: i) {
+                    let indexPath = IndexPath(row: j, section: i)
+                    let item = item(at:indexPath)
+                    if !(newFilter!.filterPredicate?.evaluate(with: item) ?? false) {
+                        deletes.append(indexPath)
+                    } else {
+                        sectionItems.append(item as Any)
+                    }
+                }
+                
+                newFilter!.sections.add(sectionItems)
+            }
             
             self.currentFilter = newFilter
             
@@ -412,28 +414,28 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
         } else if newFilter != nil && currentFilter != nil {
             // Changing active filter
             
-//            enumerateItems { (indexPath, item, stop) in
-//                deletes.append(indexPath)
-//            }
+            enumerateItems { (indexPath, item, stop) in
+                deletes.append(indexPath)
+            }
             
-//            newFilter!.sections.removeAllObjects()
-//            
-//            self.currentFilter = nil
-//            
-//            for i in 0..<numberOfSections() {
-//                var sectionItems = [Any]()
-//                
-//                for j in 0..<numberOfItems(inSection: i) {
-//                    let indexPath = IndexPath(row: j, section: i)
-//                    let item = item(at: indexPath)
-//                    if newFilter!.filterPredicate.evaluate(with: item) {
-//                        inserts.append(IndexPath(row: sectionItems.count, section: i))
-//                        sectionItems.append(item)
-//                    }
-//                }
-//                
-//                newFilter!.sections.add(sectionItems)
-//            }
+            newFilter!.sections.removeAllObjects()
+            
+            self.currentFilter = nil
+            
+            for i in 0..<numberOfSections() {
+                var sectionItems = [Any]()
+                
+                for j in 0..<numberOfItems(inSection: i) {
+                    let indexPath = IndexPath(row: j, section: i)
+                    let item = item(at: indexPath)
+                    if newFilter!.filterPredicate?.evaluate(with: item) ?? false {
+                        inserts.append(IndexPath(row: sectionItems.count, section: i))
+                        sectionItems.append(item as Any)
+                    }
+                }
+                
+                newFilter!.sections.add(sectionItems)
+            }
             
             self.currentFilter = newFilter
             
@@ -460,7 +462,5 @@ class USBaseDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSou
             }
         }
     }
-
-
 }
 

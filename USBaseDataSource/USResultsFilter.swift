@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 class USResultsFilter: NSObject, USDataSourceItemAccess {
     var filterPredicate: NSPredicate?
-    var sections: [Any] = []
+    var sections: NSMutableArray = []
     
     override init() {
         super.init()
@@ -22,15 +23,15 @@ class USResultsFilter: NSObject, USDataSourceItemAccess {
         return filter
     }
     
-//    static func filter(with block: @escaping (Any) -> Bool) -> USResultsFilter? {
-//        guard let filterPredicate = NSPredicate { (object, _) in
-//            return block(object)
-//        } else {
-//            return nil
-//        }
-//
-//        return filter(with: filterPredicate)
-//    }
+    static func filter(with block: @escaping (Any) -> Bool) -> USResultsFilter? {
+        guard let filterPredicate = NSPredicate { (object, _) in
+            return block(object)
+        } else {
+            return nil
+        }
+
+        return filter(with: filterPredicate)
+    }
     
     // MARK: - Item access
     
@@ -49,12 +50,12 @@ class USResultsFilter: NSObject, USDataSourceItemAccess {
     func indexPath(for item: Any) -> IndexPath? {
         var indexPath: IndexPath?
         
-//        enumerateItems { (ip, anItem, stop) in
-//            if item.isEqual(anItem) {
-//                indexPath = ip
-//                stop.pointee = true
-//            }
-//        }
+        enumerateItems { (ip, anItem, stop) in
+            if (item as AnyObject).isEqual(anItem) {
+                indexPath = ip
+                stop.pointee = true
+            }
+        }
         
         return indexPath
     }
@@ -81,28 +82,28 @@ class USResultsFilter: NSObject, USDataSourceItemAccess {
     }
     
     func enumerateItems(with itemBlock: @escaping USDataSourceEnumerator) {
-//        guard let itemBlock = itemBlock else {
-//            return
-//        }
-//        
-//        var stop = false
-//        
-//        for i in 0..<numberOfSections() {
-//            for j in 0..<numberOfItems(inSection: i) {
-//                guard let items = sections[i] as? [Any] else {
-//                    continue
-//                }
-//                
-//                let item = items[j]
-//                let indexPath = IndexPath(row: j, section: i)
-//                
-//                itemBlock(indexPath, item, &stop)
-//                
-//                if stop {
-//                    return
-//                }
-//            }
-//        }
+        guard let itemBlock = itemBlock else {
+            return
+        }
+        
+        var stop = false
+        
+        for i in 0..<numberOfSections() {
+            for j in 0..<numberOfItems(inSection: i) {
+                guard let items = sections[i] as? [Any] else {
+                    continue
+                }
+                
+                let item = items[j]
+                let indexPath = IndexPath(row: j, section: i)
+                
+                itemBlock(indexPath, item, &stop)
+                
+                if stop {
+                    return
+                }
+            }
+        }
     }
 }
 

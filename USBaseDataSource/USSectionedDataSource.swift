@@ -171,16 +171,21 @@ class USSectionedDataSource: USBaseDataSource {
         }
     }
     
-//    func headerFooterView(withClass class: AnyClass) -> USBaseHeaderFooterView? {
-//        let identifier = String(describing: `class`.identifier())
-//        let headerFooterView = tableView?.dequeueReusableHeaderFooterView(withIdentifier: identifier) as? USBaseHeaderFooterView
-//
-//        if headerFooterView == nil {
-//            return `class`.init() as? USBaseHeaderFooterView
-//        }
-//
-//        return headerFooterView
-//    }
+    func headerFooterView(withClass someClass: AnyClass) -> USBaseHeaderFooterView? {
+        if someClass.responds(to: #selector(USBaseHeaderFooterView.identifier())) {
+            someClass.perform(#selector(USBaseHeaderFooterView.identifier()))
+            }
+        
+        
+        let identifier = String(describing: someClass.identifier())
+        let headerFooterView = tableView?.dequeueReusableHeaderFooterView(withIdentifier: identifier) as? USBaseHeaderFooterView
+
+        if headerFooterView == nil {
+            return `class`.init() as? USBaseHeaderFooterView
+        }
+
+        return headerFooterView
+    }
 
     func viewForHeaderInSection(_ section: Int) -> USBaseHeaderFooterView? {
         return nil

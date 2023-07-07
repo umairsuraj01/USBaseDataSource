@@ -146,7 +146,7 @@ class USCoreDataSource: USBaseDataSource, NSFetchedResultsControllerDelegate {
     
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         if let sectionIndexTitlesConfigureBlock = sectionIndexTitlesConfigureBlock {
-            return sectionIndexTitlesConfigureBlock(controller, tableView) as? [String]
+            return sectionIndexTitlesConfigureBlock(controller as Any, tableView) as? [String]
         } else {
             return controller?.sectionIndexTitles
         }
