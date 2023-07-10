@@ -8,24 +8,22 @@
 import UIKit
 
 class USBaseHeaderFooterView: UITableViewHeaderFooterView {
-    static func identifier() -> String {
+    @objc static func identifier() -> String {
         return String(describing: self)
     }
     
-    override init(reuseIdentifier: String?) {
+    required override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
     }
     
-    convenience init() {
-        self.init(reuseIdentifier: type(of: self).identifier())
-    }
-    
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
     func configureView(for dataSource: Any) {
-        // override me.
+        // Override this method to configure the view based on the provided data source
     }
 }
+
+
 

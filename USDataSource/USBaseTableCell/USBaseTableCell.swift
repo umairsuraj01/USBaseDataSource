@@ -24,18 +24,25 @@ class USBaseTableCell: UITableViewCell {
      * Dequeues a table cell from tableView, or if there are no cells of the
      * receiver's type in the queue, creates a new cell and calls -configureCell.
      */
+    
     class func cellForTableView(_ tableView: UITableView) -> Self {
-        let identifier = String(describing: self)
         var cell = tableView.dequeueReusableCell(withIdentifier: self.identifier()) as? Self
-
+        
         if cell == nil {
-            cell = self.init(style: self.cellStyle, reuseIdentifier: self.identifier())
+            cell = self.init(style: self.cellStyle(), reuseIdentifier: self.identifier())
             cell?.configureCell()
         }
-
+        
         return cell!
     }
+    
+    required override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
 
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     /**
      *  Cell's identifier. You probably don't need to override me.
@@ -51,7 +58,7 @@ class USBaseTableCell: UITableViewCell {
      *
      *  @return cell style to use for this class
      */
-    class var cellStyle: UITableViewCell.CellStyle {
+    class func cellStyle() -> UITableViewCell.CellStyle {
         return .default
     }
     

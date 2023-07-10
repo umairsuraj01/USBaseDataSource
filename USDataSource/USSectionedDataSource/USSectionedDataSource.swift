@@ -172,29 +172,21 @@ class USSectionedDataSource: USBaseDataSource {
     }
     
     func headerFooterView(withClass someClass: AnyClass) -> USBaseHeaderFooterView? {
-        if someClass.responds(to: #selector(USBaseHeaderFooterView.identifier())) {
-            someClass.perform(#selector(USBaseHeaderFooterView.identifier()))
-            }
-        
-        
         let identifier = String(describing: someClass.identifier())
         let headerFooterView = tableView?.dequeueReusableHeaderFooterView(withIdentifier: identifier) as? USBaseHeaderFooterView
 
         if headerFooterView == nil {
-            return `class`.init() as? USBaseHeaderFooterView
+            return (someClass as? USBaseHeaderFooterView.Type)?.init(reuseIdentifier: identifier)
         }
-
         return headerFooterView
     }
 
     func viewForHeaderInSection(_ section: Int) -> USBaseHeaderFooterView? {
-        return nil
-//        return headerFooterView(withClass: sectionAtIndex(index: section).headerClass)
+        return headerFooterView(withClass: sectionAtIndex(index: section).headerClass)
     }
 
     func viewForFooterInSection(_ section: Int) -> USBaseHeaderFooterView? {
-        return nil
-//        return headerFooterView(withClass: sectionAtIndex(index: section).footerClass)
+        return headerFooterView(withClass: sectionAtIndex(index: section).footerClass)
     }
 
     func heightForHeaderInSection(_ section: Int) -> CGFloat {

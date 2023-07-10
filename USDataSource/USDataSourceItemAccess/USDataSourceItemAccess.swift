@@ -45,44 +45,44 @@ protocol USDataSourceItemAccess {
      */
     func numberOfItems(inSection section: Int) -> Int
     
-    /**
-     Enumerate every item in the data source (or currently-active filter), executing a block for each item.
-     
-     - parameter itemBlock: block to execute for each item
-     */
-    func enumerateItems(with itemBlock: USDataSourceEnumerator)
+//    /**
+//     Enumerate every item in the data source (or currently-active filter), executing a block for each item.
+//
+//     - parameter itemBlock: block to execute for each item
+//     */
+//    func enumerateItems(with itemBlock: USDataSourceEnumerator)
 }
 
-extension USDataSourceItemAccess {
-    /**
-     Enumerate every item in the data source (or currently-active filter), executing a block for each item.
-     
-     - parameter itemBlock: block to execute for each item
-     */
-    func enumerateItems(with itemBlock: USDataSourceEnumerator) {
-        let stop = UnsafeMutablePointer<ObjCBool>.allocate(capacity: 1)
-        stop.pointee = false
-
-        for section in 0..<numberOfSections() {
-            let itemCount = numberOfItems(inSection: section)
-
-            for itemIndex in 0..<itemCount {
-                let indexPath = IndexPath(item: itemIndex, section: section)
-                let item = self.item(at: indexPath)
-
-                itemBlock(indexPath, item, stop)
-
-                if stop.pointee {
-                    break
-                }
-            }
-
-            if stop.pointee {
-                break
-            }
-        }
-        
-        stop.deallocate()
-    }
-}
+//extension USDataSourceItemAccess {
+//    /**
+//     Enumerate every item in the data source (or currently-active filter), executing a block for each item.
+//
+//     - parameter itemBlock: block to execute for each item
+//     */
+//    func enumerateItems(with itemBlock: USDataSourceEnumerator) {
+//        let stop = UnsafeMutablePointer<ObjCBool>.allocate(capacity: 1)
+//        stop.pointee = false
+//
+//        for section in 0..<numberOfSections() {
+//            let itemCount = numberOfItems(inSection: section)
+//
+//            for itemIndex in 0..<itemCount {
+//                let indexPath = IndexPath(item: itemIndex, section: section)
+//                let item = self.item(at: indexPath)
+//
+//                itemBlock(indexPath, item, stop)
+//
+//                if stop.pointee {
+//                    break
+//                }
+//            }
+//
+//            if stop.pointee {
+//                break
+//            }
+//        }
+//
+//        stop.deallocate()
+//    }
+//}
 
