@@ -1,18 +1,21 @@
-source 'https://github.com/CocoaPods/Specs.git'
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
 
-platform :ios, '6.0'
-inhibit_all_warnings!
+target 'USBaseDataSource' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
 
-target 'ExampleSSDataSources' do
-  pod 'SSDataSources', :path => '../'
-  pod 'MagicalRecord'
-  
-  target 'ExampleSSDataSourcesTests' do
+  # Pods for USBaseDataSource
+	pod 'USDataSource'
+pod 'USDataSource', :git => 'https://github.com/umairsuraj01/USBaseDataSource.git'
+
+  target 'USBaseDataSourceTests' do
     inherit! :search_paths
-
-  pod 'Expecta'
-  pod 'OCMock'
-  
+    # Pods for testing
   end
-end
 
+  target 'USBaseDataSourceUITests' do
+    # Pods for testing
+  end
+
+end
