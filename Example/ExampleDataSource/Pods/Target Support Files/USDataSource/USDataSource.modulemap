@@ -1,0 +1,6 @@
+framework module USDataSource {
+  umbrella header "USDataSource-umbrella.h"
+
+  export *
+  module * { export * }
+}
