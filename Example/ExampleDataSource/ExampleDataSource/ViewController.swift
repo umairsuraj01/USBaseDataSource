@@ -9,7 +9,7 @@ import UIKit
 import USDataSource
 
 class ViewController: UIViewController {
-//    private var dataSource: USArrayDataSource!
+    private var dataSource: USArrayDataSource!
 //
 //    init() {
 //        super.init(style: .grouped)

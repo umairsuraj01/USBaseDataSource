@@ -6,7 +6,7 @@ target 'ExampleDataSource' do
   use_frameworks!
 
   # Pods for ExampleDataSource
-  pod 'USDataSources'
+  pod 'USDataSource'
 
   target 'ExampleDataSourceTests' do
     inherit! :search_paths

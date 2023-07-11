@@ -132,21 +132,21 @@
 		08B69CBD2A5D8D63004FDBE4 /* ExampleDataSource */ = {
 			isa = PBXGroup;
 			children = (
+				08B69CBE2A5D8D63004FDBE4 /* AppDelegate.swift */,
+				08B69CCA2A5D8D66004FDBE4 /* Assets.xcassets */,
+				08B69CC72A5D8D63004FDBE4 /* ExampleDataSource.xcdatamodeld */,
+				08B69CCF2A5D8D67004FDBE4 /* Info.plist */,
+				08B69CCC2A5D8D66004FDBE4 /* LaunchScreen.storyboard */,
+				08B69CC42A5D8D63004FDBE4 /* Main.storyboard */,
+				08B69CC02A5D8D63004FDBE4 /* SceneDelegate.swift */,
 				08B69CF62A5D95FD004FDBE4 /* USCollectionViewController.swift */,
 				08B69CF12A5D95F7004FDBE4 /* USCollectionViewSectionHeader.swift */,
 				08B69CF32A5D95F9004FDBE4 /* USExpandingViewController.swift */,
 				08B69CF52A5D95FC004FDBE4 /* USSectionedViewController.swift */,
 				08B69CF82A5D9600004FDBE4 /* USSolidColorCollectionCell.swift */,
 				08B69CF72A5D95FF004FDBE4 /* USTableViewController.swift */,
-				08B69CF22A5D95F8004FDBE4 /* Wizard.swift */,
-				08B69CBE2A5D8D63004FDBE4 /* AppDelegate.swift */,
-				08B69CC02A5D8D63004FDBE4 /* SceneDelegate.swift */,
 				08B69CC22A5D8D63004FDBE4 /* ViewController.swift */,
-				08B69CC42A5D8D63004FDBE4 /* Main.storyboard */,
-				08B69CCA2A5D8D66004FDBE4 /* Assets.xcassets */,
-				08B69CCC2A5D8D66004FDBE4 /* LaunchScreen.storyboard */,
-				08B69CCF2A5D8D67004FDBE4 /* Info.plist */,
-				08B69CC72A5D8D63004FDBE4 /* ExampleDataSource.xcdatamodeld */,
+				08B69CF22A5D95F8004FDBE4 /* Wizard.swift */,
 			);
 			path = ExampleDataSource;
 			sourceTree = "<group>";
