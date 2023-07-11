@@ -1,5 +1,5 @@
 PODS:
-  - USDataSource (0.1)
+  - USDataSource (0.2)
 
 DEPENDENCIES:
   - USDataSource
@@ -9,7 +9,7 @@ SPEC REPOS:
     - USDataSource
 
 SPEC CHECKSUMS:
-  USDataSource: 40b05b29da8c19d010acc15420534e732d3b18e2
+  USDataSource: 65e2db18cabea746223bf241ff2b79d10f5ccfda
 
 PODFILE CHECKSUM: 311fd83c471f1e62ac6539f6f6ebf1d129133ffd
 

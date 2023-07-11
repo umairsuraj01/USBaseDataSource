@@ -6,10 +6,10 @@
 //
 
 import UIKit
-import USDataSource
+import USDataSource.Swift
 
 class ViewController: UIViewController {
-    private var dataSource: USArrayDataSource!
+//    private var dataSource: USArrayDataSource!
 //
 //    init() {
 //        super.init(style: .grouped)

@@ -1,37 +1,37 @@
-SSDataSources
+USDataSource
 =============
 
-[![Circle CI](https://circleci.com/gh/splinesoft/SSDataSources.svg?style=svg&circle-token=cdbc822ee90ca92ed398f8a3277389474ef613f2)](https://circleci.com/gh/splinesoft/SSDataSources) [![Documentation](http://img.shields.io/cocoapods/v/SSDataSources.svg?style=flat)](http://cocoadocs.org/docsets/SSDataSources/) [![Coverage Status](http://codecov.io/github/splinesoft/SSDataSources/coverage.svg?branch=master)](http://codecov.io/github/splinesoft/SSDataSources?branch=master)
+[![Circle CI](https://circleci.com/gh/splinesoft/USDataSources.svg?style=svg&circle-token=cdbc822ee90ca92ed398f8a3277389474ef613f2)](https://circleci.com/gh/splinesoft/USDataSources) [![Documentation](http://img.shields.io/cocoapods/v/USDataSources.svg?style=flat)](http://cocoadocs.org/docsets/USDataSources/) [![Coverage Status](http://codecov.io/github/splinesoft/USDataSources/coverage.svg?branch=master)](http://codecov.io/github/splinesoft/USDataSources?branch=master)
 
 Flexible data sources for your `UITableView` and `UICollectionView`. *wow, much DRY*
 
 No doubt you've done the `tableView:cellForRowAtIndexPath:` and `tableView:numberOfRowsInSection:` and `collectionView:cellForItemAtIndexPath:` and `collectionView:numberOfItemsInSection:` dances many times before. You may also have updated your data and forgotten to update the table or collection view. Whoops -- crash! Is there a better way?
 
-`SSDataSources` is a collection of objects that conform to `UITableViewDataSource` and `UICollectionViewDataSource`. An abstract superclass, `SSBaseDataSource`, defines a common interface that is implemented by four concrete subclasses:
+`USDataSources` is a collection of objects that conform to `UITableViewDataSource` and `UICollectionViewDataSource`. An abstract superclass, `USBaseDataSource`, defines a common interface that is implemented by four concrete subclasses:
 
-- `SSArrayDataSource` powers a table or collection view with a single section.
-- `SSSectionedDataSource` powers a table or collection view with multiple sections.
-- `SSCoreDataSource` powers a table or collection view backed by a Core Data fetch request.
-- `SSExpandingDataSource` powers a table or collection view with multiple sections, much like `SSSectionedDataSource`, but also allows for sections to be expanded and collapsed.
+- `USArrayDataSource` powers a table or collection view with a single section.
+- `USSectionedDataSource` powers a table or collection view with multiple sections.
+- `USCoreDataSource` powers a table or collection view backed by a Core Data fetch request.
+- `USExpandingDataSource` powers a table or collection view with multiple sections, much like `USSectionedDataSource`, but also allows for sections to be expanded and collapsed.
 
-`SSDataSources` is my own implementation of ideas featured in [objc.io's wonderful first issue](http://www.objc.io/issue-1/table-views.html).
+`USDataSources` is my own implementation of ideas featured in [objc.io's wonderful first issue](http://www.objc.io/issue-1/table-views.html).
 
-`SSDataSources` powers single-section, multi-section, and Core Data-backed tables in my app [MUDRammer - A Modern MUD client for iPhone and iPad](https://itunes.apple.com/us/app/mudrammer-a-modern-mud-client/id597157072?mt=8).
+`USDataSources` powers single-section, multi-section, and Core Data-backed tables in my app [MUDRammer - A Modern MUD client for iPhone and iPad](https://itunes.apple.com/us/app/mudrammer-a-modern-mud-client/id597157072?mt=8).
 
 ## Install
 
 Install with [CocoaPods](http://cocoapods.org). Add to your `Podfile`:
 
 ```
-pod 'SSDataSources', :head # YOLO
+pod 'USDataSources'
 ```
 
 ## Example
 
-All the tables and collection views in the `Example` project are built with `SSDataSources`.
+All the tables and collection views in the `Example` project are built with `USDataSources`.
 
 ```bash
-pod try SSDataSources
+pod try USDataSources
 ```
 
 Or:
@@ -39,22 +39,22 @@ Or:
 ```bash
 cd Example
 pod install
-open ExampleSSDataSources.xcworkspace
+open ExampleUSDataSources.xcworkspace
 ```
 
 ## Array Data Source
 
-`SSArrayDataSource` powers a table or collection view with a single section. See `SSArrayDataSource.h` for more details.
+`USArrayDataSource` powers a table or collection view with a single section. See `USArrayDataSource.h` for more details.
 
 Check out the example project for sample table and collection views that use the array data source.
 
-`SSArrayDataSource` can also observe a target and key path for array content. 
+`USArrayDataSource` can also observe a target and key path for array content. 
 
 
 ```objc
 @interface WizardicTableViewController : UITableViewController
 
-@property (nonatomic, strong) SSArrayDataSource *wizardDataSource;
+@property (nonatomic, strong) USArrayDataSource *wizardDataSource;
 
 @end
 
@@ -63,27 +63,27 @@ Check out the example project for sample table and collection views that use the
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    _wizardDataSource = [[SSArrayDataSource alloc] initWithItems:
+    _wizardDataSource = [[USArrayDataSource alloc] initWithItems:
                          @[ @"Merlyn", @"Gandalf", @"Melisandre" ]];
 
-    // SSDataSources creates your cell and calls
+    // USDataSources creates your cell and calls
     // this configure block for each cell with 
     // the object being presented in that cell,
     // the parent table or collection view,
     // and the index path at which the cell appears.
-    self.wizardDataSource.cellConfigureBlock = ^(SSBaseTableCell *cell, 
+    self.wizardDataSource.cellConfigureBlock = ^(USBaseTableCell *cell, 
                                                  NSString *wizard,
                                                  UITableView *tableView,
                                                  NSIndexPath *indexPath) {
         cell.textLabel.text = wizard;
     };
     
-    self.wizardDataSource.tableActionBlock = ^BOOL(SSCellActionType action,
+    self.wizardDataSource.tableActionBlock = ^BOOL(USCellActionType action,
                                                    UITableView *tableView,
                                                    NSIndexPath *indexPath) {
         // Disallow gestures for moving and editing.
         // You could instead do something like allowing only editing:
-        // return action == SSCellActionTypeEdit;
+        // return action == USCellActionTypeEdit;
         return NO;
     };
     
@@ -140,7 +140,7 @@ self.wizardDataSource.cellCreationBlock = ^id(NSString *wizard,
 
 ```
 
-Your view controller should continue to implement `UITableViewDelegate`. `SSDataSources` can help there too:
+Your view controller should continue to implement `UITableViewDelegate`. `USDataSources` can help there too:
 
 ```objc
 - (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -163,14 +163,14 @@ Your view controller should continue to implement `UITableViewDelegate`. `SSData
 
 ## Sectioned Data Source
 
-`SSSectionedDataSource` powers a table or collection view with multiple sections. Each section is modeled with an `SSSection` object, which stores the section's items and a few other configurable bits. See `SSSectionedDataSource.h` and `SSSection.h` for more details.
+`USSectionedDataSource` powers a table or collection view with multiple sections. Each section is modeled with an `USSection` object, which stores the section's items and a few other configurable bits. See `USSectionedDataSource.h` and `USSection.h` for more details.
 
 Check out the example project for a sample table that uses the sectioned data source.
 
 ```objc
 @interface ElementalTableViewController : UITableViewController
 
-@property (nonatomic, strong) SSSectionedDataSource *elementDataSource;
+@property (nonatomic, strong) USSectionedDataSource *elementDataSource;
 
 @end
 
@@ -180,9 +180,9 @@ Check out the example project for a sample table that uses the sectioned data so
     [super viewDidLoad];
 
     // Let's start with one section
-    _elementDataSource = [[SSSectionedDataSource alloc] initWithItems:@[ @"Earth" ]];
+    _elementDataSource = [[USSectionedDataSource alloc] initWithItems:@[ @"Earth" ]];
 
-    self.elementDataSource.cellConfigureBlock = ^(SSBaseTableCell *cell, 
+    self.elementDataSource.cellConfigureBlock = ^(USBaseTableCell *cell, 
                                                   NSString *element,
                                                   UITableView *tableView,
                                                   NSIndexPath *indexPath) {
@@ -197,7 +197,7 @@ Check out the example project for a sample table that uses the sectioned data so
 @end
 ```
 
-`SSSectionedDataSource` has you covered if your data changes:
+`USSectionedDataSource` has you covered if your data changes:
  
 ```objc
 // Sometimes it's nice to add a view that automatically 
@@ -213,10 +213,10 @@ self.elementDataSource.emptyView = noItemsLabel;
 self.elementDataSource.rowAnimation = UITableViewRowAnimationFade;
 
 // Add some new sections
-[self.elementDataSource appendSection:[SSSection sectionWithItems:@[ @"Fire" ]]];
-[self.elementDataSource appendSection:[SSSection sectionWithItems:@[ @"Wind" ]]];
-[self.elementDataSource appendSection:[SSSection sectionWithItems:@[ @"Water" ]]];
-[self.elementDataSource appendSection:[SSSection sectionWithItems:@[ @"Heart", @"GOOOO PLANET!" ]]];
+[self.elementDataSource appendSection:[USSection sectionWithItems:@[ @"Fire" ]]];
+[self.elementDataSource appendSection:[USSection sectionWithItems:@[ @"Wind" ]]];
+[self.elementDataSource appendSection:[USSection sectionWithItems:@[ @"Water" ]]];
+[self.elementDataSource appendSection:[USSection sectionWithItems:@[ @"Heart", @"GOOOO PLANET!" ]]];
 
 // Are you 4 srs, heart?
 [self.elementDataSource removeSectionAtIndex:([elementDataSource numberOfSections] - 1)];
@@ -224,7 +224,7 @@ self.elementDataSource.rowAnimation = UITableViewRowAnimationFade;
 
 ## Expanding Data Source
 
-`SSExpandingDataSource` powers a table or collection view with multiple sections, much like `SSSectionedDataSource`, but also allows for sections to be expanded and collapsed. 
+`USExpandingDataSource` powers a table or collection view with multiple sections, much like `USSectionedDataSource`, but also allows for sections to be expanded and collapsed. 
 
 Any number of sections may be toggled open or closed. Different sections can display different numbers of rows when they are collapsed.
 
@@ -233,7 +233,7 @@ Check out the example project for a sample table using the expanding data source
 ```objc
 @interface ExpandingTableViewController : UITableViewController
 
-@property (nonatomic, strong) SSExpandingDataSource *dataSource;
+@property (nonatomic, strong) USExpandingDataSource *dataSource;
 
 @end
 
@@ -242,17 +242,17 @@ Check out the example project for a sample table using the expanding data source
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    _dataSource = [[SSExpandingDataSource alloc] initWithItems:@[ @1, @2, @3 ]];
-    [self.dataSource appendSection:[SSSection sectionWithItems:@[ @4, @5, @6 ]]];
+    _dataSource = [[USExpandingDataSource alloc] initWithItems:@[ @1, @2, @3 ]];
+    [self.dataSource appendSection:[USSection sectionWithItems:@[ @4, @5, @6 ]]];
 
-    self.dataSource.cellConfigureBlock = ^(SSBaseTableCell *cell, 
+    self.dataSource.cellConfigureBlock = ^(USBaseTableCell *cell, 
                                            NSNumber *number,
                                            UITableView *tableView,
                                            NSIndexPath *indexPath) {
          cell.textLabel.text = [number stringValue];
     };
     
-    self.dataSource.collapsedSectionCountBlock = ^NSInteger(SSSection *section,
+    self.dataSource.collapsedSectionCountBlock = ^NSInteger(USSection *section,
                                                             NSInteger sectionIndex) {
          // Each section can show different numbers of rows when collapsed.
          // Here, sections collapse down to 1 row more than their index in the table.
@@ -274,16 +274,16 @@ Check out the example project for a sample table using the expanding data source
 
 ## Core Data
 
-You're a modern wo/man-about-Internet and sometimes you want to present a `UITableView` or `UICollectionView` backed by a core data fetch request or fetched results controller. `SSDataSources` has you covered with `SSCoreDataSource`, featured here with a cameo by [MagicalRecord](https://github.com/magicalpanda/MagicalRecord).
+You're a modern wo/man-about-Internet and sometimes you want to present a `UITableView` or `UICollectionView` backed by a core data fetch request or fetched results controller. `USDataSources` has you covered with `USCoreDataSource`, featured here with a cameo by [MagicalRecord](https://github.com/magicalpanda/MagicalRecord).
 
 ```objc
-@interface SSCoreDataTableViewController : UITableViewController
+@interface USCoreDataTableViewController : UITableViewController
 
-@property (nonatomic, strong) SSCoreDataSource *dataSource;
+@property (nonatomic, strong) USCoreDataSource *dataSource;
 
 @end
 
-@implementation SSCoreDataTableViewController
+@implementation USCoreDataTableViewController
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -291,19 +291,19 @@ You're a modern wo/man-about-Internet and sometimes you want to present a `UITab
     NSFetchRequest *triggerFetch = [Trigger MR_requestAllSortedBy:[Trigger defaultSortField]
                                                         ascending:[Trigger defaultSortAscending]];
    
-    _dataSource = [[SSCoreDataSource alloc] initWithFetchRequest:triggerFetch
+    _dataSource = [[USCoreDataSource alloc] initWithFetchRequest:triggerFetch
                                                        inContext:[NSManagedObjectContext 
                                                                   MR_defaultContext]
                                               sectionNameKeyPath:nil];
                                                  
-    self.dataSource.cellConfigureBlock = ^(SSBaseTableCell *cell, 
+    self.dataSource.cellConfigureBlock = ^(USBaseTableCell *cell, 
                                            Trigger *trigger, 
                                            UITableView *tableView,
                                            NSIndexPath *indexPath ) {
          cell.textLabel.text = trigger.name;
     };
     
-    // SSCoreDataSource conforms to NSFetchedResultsControllerDelegate.
+    // USCoreDataSource conforms to NSFetchedResultsControllerDelegate.
     // Set the `tableView` property to automatically update the table 
     // after changes in the data source's managed object context.
     // This also sets the tableview's `dataSource`.
@@ -313,22 +313,22 @@ You're a modern wo/man-about-Internet and sometimes you want to present a `UITab
     self.dataSource.rowAnimation = UITableViewRowAnimationFade;
     
     // Optional - permissions for editing and moving
-    self.dataSource.tableActionBlock = ^BOOL(SSCellActionType actionType,
+    self.dataSource.tableActionBlock = ^BOOL(USCellActionType actionType,
                                              UITableView *tableView,
                                              NSIndexPath *indexPath) {
          
          // Disallow moving, allow editing
-         return actionType == SSCellActionTypeEdit;
+         return actionType == USCellActionTypeEdit;
     };
     
     // Optional - handle managed object deletion
-    self.dataSource.tableDeletionBlock = ^(SSCoreDataSource *aDataSource,
+    self.dataSource.tableDeletionBlock = ^(USCoreDataSource *aDataSource,
                                            UITableView *tableView,
                                            NSIndexPath *indexPath) {
                                       
         Trigger *myObject = [aDataSource itemAtIndexPath:indexPath];
         
-        // SSCoreDataSource conforms to NSFetchedResultsControllerDelegate,
+        // USCoreDataSource conforms to NSFetchedResultsControllerDelegate,
         // so saving the object's context will automatically update the table.
         [myObject deleteInContext:myObject.managedObjectContext];
         [myObject.managedObjectContext MR_saveToPersistentStoreWithCompletion:nil];
@@ -339,4 +339,4 @@ You're a modern wo/man-about-Internet and sometimes you want to present a `UITab
 
 ## Thanks!
 
-`SSDataSources` is a [@jhersh](https://github.com/jhersh) production -- ([electronic mail](mailto:jon@her.sh) | [@jhersh](https://twitter.com/jhersh))
+`USDataSources` is a [@jhersh](https://github.com/jhersh) production -- ([electronic mail](mailto:jon@her.sh) | [@jhersh](https://twitter.com/jhersh))
