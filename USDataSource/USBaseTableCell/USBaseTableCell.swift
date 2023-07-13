@@ -1,29 +1,31 @@
+//Copyright (c) 2023 Muhammad Umair Soorage
+//Fantasy Tech Solutions
 //
-//  USBaseTableCell.swift
-//  USBaseDataSource
+//Permission is hereby granted, free of charge, to any person obtaining
+//a copy of this software and associated documentation files (the
+//"Software"), to deal in the Software without restriction, including
+//without limitation the rights to use, copy, modify, merge, publish,
+//distribute, sublicense, and/or sell copies of the Software, and to
+//permit persons to whom the Software is furnished to do so, subject to
+//the following conditions:
 //
-//  Created by Umair Suraj on 05/07/2023.
+//The above copyright notice and this permission notice shall be
+//included in all copies or substantial portions of the Software.
 //
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+//EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+//MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+//LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+//OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+//WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import UIKit
 
-/**
- * A simple base table cell. Subclass me and override configureCell
- * to add custom one-time logic (e.g. creating subviews).
- * Override cellStyle to use a different style.
- * You probably don't need to override identifier.
- */
-
 class USBaseTableCell: UITableViewCell {
     
-    // Block called when embedded collection cell is selected.
     typealias USCollectionCellDidSelectBlock = (Any?, Any?, IndexPath?) -> Void
     typealias USRefreshParentTableView = (Any?, Any?, IndexPath?) -> Void
-    
-    /**
-     * Dequeues a table cell from tableView, or if there are no cells of the
-     * receiver's type in the queue, creates a new cell and calls -configureCell.
-     */
     
     class func cellForTableView(_ tableView: UITableView) -> Self {
         var cell = tableView.dequeueReusableCell(withIdentifier: self.identifier()) as? Self
@@ -32,7 +34,6 @@ class USBaseTableCell: UITableViewCell {
             cell = self.init(style: self.cellStyle(), reuseIdentifier: self.identifier())
             cell?.configureCell()
         }
-        
         return cell!
     }
     
@@ -45,28 +46,14 @@ class USBaseTableCell: UITableViewCell {
         configureCell()
     }
     
-    /**
-     *  Cell's identifier. You probably don't need to override me.
-     *
-     *  @return an identifier for this cell class
-     */
     class func identifier() -> String {
         return String(describing: self)
     }
     
-    /**
-     *  Cell style to use. Override me in a subclass and return a different style.
-     *
-     *  @return cell style to use for this class
-     */
     class func cellStyle() -> UITableViewCell.CellStyle {
         return .default
     }
     
-    /**
-     *  Called once for each cell after initial creation.
-     *  Subclass me for one-time logic, like creating subviews.
-     */
     func configureCell() {
         // override me!
     }
@@ -86,10 +73,6 @@ class USBaseTableCell: UITableViewCell {
         self.didTapShareButtonBlock = didTapShareButtonBlock
     }
     
-    /**
-     * Cell configuration block, called for each table and collection
-     * cell with the object to display in that cell. See block signature above.
-     */
     var collectionCellDidSelectBlock: USCollectionCellDidSelectBlock?
     var refreshParentTableView: USRefreshParentTableView?
     

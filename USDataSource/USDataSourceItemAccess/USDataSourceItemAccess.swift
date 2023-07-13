@@ -1,88 +1,34 @@
+//Copyright (c) 2023 Muhammad Umair Soorage
+//Fantasy Tech Solutions
 //
-//  USDataSourceItemAccess.swift
-//  USBaseDataSource
+//Permission is hereby granted, free of charge, to any person obtaining
+//a copy of this software and associated documentation files (the
+//"Software"), to deal in the Software without restriction, including
+//without limitation the rights to use, copy, modify, merge, publish,
+//distribute, sublicense, and/or sell copies of the Software, and to
+//permit persons to whom the Software is furnished to do so, subject to
+//the following conditions:
 //
-//  Created by Umair Suraj on 05/07/2023.
+//The above copyright notice and this permission notice shall be
+//included in all copies or substantial portions of the Software.
 //
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+//EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+//MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+//LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+//OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+//WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import Foundation
 
-// Enumeration block for enumerating data source items.
 typealias USDataSourceEnumerator = (IndexPath, Any, inout Bool) -> Void
 
 protocol USDataSourceItemAccess {
-    /**
-     Return the item at a given index path. Override me in your subclass.
-     */
     func item(at indexPath: IndexPath) -> Any?
-    
-    /**
-     Search the data source for the first instance of the specified item.
-     Sends isEqual: to every item in the data source.
-     
-     - parameter item: an item to search for
-     
-     - returns: the item's index path if found, or nil
-     */
     func indexPath(for item: Any) -> IndexPath?
-    
-    /**
-     Return the total number of items in the data source. Override me in your subclass.
-     */
     func numberOfItems() -> Int
-    
-    /**
-     Return the total number of sections in the data source. Override me!
-     */
     func numberOfSections() -> Int
-    
-    /**
-     Return the total number of items in a given section. Override me!
-     
-     - parameter section: the section index
-     
-     - returns: the number of items in the section
-     */
     func numberOfItems(inSection section: Int) -> Int
-    
-//    /**
-//     Enumerate every item in the data source (or currently-active filter), executing a block for each item.
-//
-//     - parameter itemBlock: block to execute for each item
-//     */
-//    func enumerateItems(with itemBlock: USDataSourceEnumerator)
 }
-
-//extension USDataSourceItemAccess {
-//    /**
-//     Enumerate every item in the data source (or currently-active filter), executing a block for each item.
-//
-//     - parameter itemBlock: block to execute for each item
-//     */
-//    func enumerateItems(with itemBlock: USDataSourceEnumerator) {
-//        let stop = UnsafeMutablePointer<ObjCBool>.allocate(capacity: 1)
-//        stop.pointee = false
-//
-//        for section in 0..<numberOfSections() {
-//            let itemCount = numberOfItems(inSection: section)
-//
-//            for itemIndex in 0..<itemCount {
-//                let indexPath = IndexPath(item: itemIndex, section: section)
-//                let item = self.item(at: indexPath)
-//
-//                itemBlock(indexPath, item, stop)
-//
-//                if stop.pointee {
-//                    break
-//                }
-//            }
-//
-//            if stop.pointee {
-//                break
-//            }
-//        }
-//
-//        stop.deallocate()
-//    }
-//}
 

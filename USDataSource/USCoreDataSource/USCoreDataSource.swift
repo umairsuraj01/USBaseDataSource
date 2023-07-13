@@ -1,44 +1,48 @@
+//Copyright (c) 2023 Muhammad Umair Soorage
+//Fantasy Tech Solutions
 //
-//  USCoreDataSource.swift
-//  USBaseDataSource
+//Permission is hereby granted, free of charge, to any person obtaining
+//a copy of this software and associated documentation files (the
+//"Software"), to deal in the Software without restriction, including
+//without limitation the rights to use, copy, modify, merge, publish,
+//distribute, sublicense, and/or sell copies of the Software, and to
+//permit persons to whom the Software is furnished to do so, subject to
+//the following conditions:
 //
-//  Created by Umair Suraj on 05/07/2023.
+//The above copyright notice and this permission notice shall be
+//included in all copies or substantial portions of the Software.
 //
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+//EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+//MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+//LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+//OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+//WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import UIKit
 import CoreData
 
-/**
- * Generic table/collectionview data source, useful when your data comes from an NSFetchedResultsController.
- * Automatically inserts/reloads/deletes rows in the table or collection view in response to FRC events.
- */
 class USCoreDataSource: USBaseDataSource, NSFetchedResultsControllerDelegate {
     
     // MARK: Properties
     
-    /// The data source's fetched results controller. You probably don't need to set this directly as both initializers will do this for you.
     var controller: NSFetchedResultsController<NSFetchRequestResult>?
     
-    /// Any error experienced during the most recent fetch. nil if the fetch succeeded.
     private(set) var fetchError: Error?
     
-    // Block called when move is needed on a CoreData object.
     typealias USCoreDataMoveRowBlock = (Any, IndexPath, IndexPath) -> Void
     var coreDataMoveRowBlock: USCoreDataMoveRowBlock?
     
-    // Block called after performFetch.
     typealias USCoreDataPostReloadBlock = (Any, UIView) -> Void
     var coreDataPostReloadBlock: USCoreDataPostReloadBlock?
     
-    // Block called to configure each table and collection cell.
     typealias USTitleForHeaderConfigureBlock = (Any, UIView, Int) -> Any
     var titleForHeaderConfigureBlock: USTitleForHeaderConfigureBlock?
     
-    // Block called to configure each table and collection cell.
     typealias USsectionIndexTitlesConfigureBlock = (Any, UIView) -> Any
     var sectionIndexTitlesConfigureBlock: USsectionIndexTitlesConfigureBlock?
     
-    // For UICollectionView
     private var lastFilter: USResultsFilter?
     
     var reloadCollectionViewAfterChanges = false
@@ -241,7 +245,7 @@ class USCoreDataSource: USBaseDataSource, NSFetchedResultsControllerDelegate {
             break
         }
     }
-
+    
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
                     didChange sectionInfo: NSFetchedResultsSectionInfo,
                     at sectionIndex: Int,
@@ -258,6 +262,4 @@ class USCoreDataSource: USBaseDataSource, NSFetchedResultsControllerDelegate {
             return
         }
     }
-
-    
 }

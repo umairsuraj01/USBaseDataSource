@@ -1,9 +1,24 @@
+//Copyright (c) 2023 Muhammad Umair Soorage
+//Fantasy Tech Solutions
 //
-//  USSectionedDataSource.swift
-//  USBaseDataSource
+//Permission is hereby granted, free of charge, to any person obtaining
+//a copy of this software and associated documentation files (the
+//"Software"), to deal in the Software without restriction, including
+//without limitation the rights to use, copy, modify, merge, publish,
+//distribute, sublicense, and/or sell copies of the Software, and to
+//permit persons to whom the Software is furnished to do so, subject to
+//the following conditions:
 //
-//  Created by Umair Suraj on 05/07/2023.
+//The above copyright notice and this permission notice shall be
+//included in all copies or substantial portions of the Software.
 //
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+//EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+//MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+//LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+//OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+//WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import UIKit
 
@@ -72,7 +87,6 @@ class USSectionedDataSource: USBaseDataSource {
         return sections.firstIndex { $0.sectionIdentifier as! T == identifier }
     }
     
-    
     // MARK: - Moving sections
     
     override func moveSection(at index1: Int, to index2: Int) {
@@ -120,7 +134,7 @@ class USSectionedDataSource: USBaseDataSource {
     }
     
     func appendItems(items: [Any], toSection section: Int) {
-        let sectionCount = numberOfItemsInSection(section: section)
+        let sectionCount = numberOfItems(inSection: section)
         sectionAtIndex(index: section).items.addObjects(from: items)
         insertCells(at: Self.indexPathArray(with: NSMakeRange(sectionCount, items.count), inSection: section))
     }
@@ -128,7 +142,7 @@ class USSectionedDataSource: USBaseDataSource {
     // MARK: - Adjusting sections
     
     func adjustSection(at index: Int, toNumberOfItems numberOfItems: Int) -> Bool {
-        if numberOfItems == numberOfItemsInSection(section: index) {
+        if numberOfItems == numberOfItems(inSection: index) {
             return false
         }
         
@@ -269,32 +283,5 @@ class USSectionedDataSource: USBaseDataSource {
         sourceSection.items.removeObject(at: sourceIndexPath.row)
         destinationSection.items.insert(item, at: destinationIndexPath.row)
     }
-    
-    // Helper method to calculate the number of items in a section
-    private func numberOfItemsInSection(section: Int) -> Int {
-        return sectionAtIndex(index: section).items.count
-    }
-    
-//    // Helper method to generate an array of index paths from an index set and section number
-//    private static func indexPathArrayWithIndexSet(indexSet: IndexSet, inSection section: Int) -> [IndexPath] {
-//        var indexPaths: [IndexPath] = []
-//
-//        indexSet.forEach { index in
-//            indexPaths.append(IndexPath(row: index, section: section))
-//        }
-//
-//        return indexPaths
-//    }
-//
-//    // Helper method to generate an array of index paths from a range and section number
-//    private static func indexPathArrayWithRange(range: NSRange, inSection section: Int) -> [IndexPath] {
-//        var indexPaths: [IndexPath] = []
-//
-//        for i in range.location..<range.location + range.length {
-//            indexPaths.append(IndexPath(row: i, section: section))
-//        }
-//
-//        return indexPaths
-//    }
 }
 
