@@ -7,31 +7,29 @@ Flexible data sources for your `UITableView` and `UICollectionView`. *wow, much 
 
 No doubt you've done the `tableView:cellForRowAtIndexPath:` and `tableView:numberOfRowsInSection:` and `collectionView:cellForItemAtIndexPath:` and `collectionView:numberOfItemsInSection:` dances many times before. You may also have updated your data and forgotten to update the table or collection view. Whoops -- crash! Is there a better way?
 
-`USDataSources` is a collection of objects that conform to `UITableViewDataSource` and `UICollectionViewDataSource`. An abstract superclass, `USBaseDataSource`, defines a common interface that is implemented by four concrete subclasses:
+`USDataSource` is a collection of objects that conform to `UITableViewDataSource` and `UICollectionViewDataSource`. An abstract superclass, `USBaseDataSource`, defines a common interface that is implemented by four concrete subclasses:
 
 - `USArrayDataSource` powers a table or collection view with a single section.
 - `USSectionedDataSource` powers a table or collection view with multiple sections.
 - `USCoreDataSource` powers a table or collection view backed by a Core Data fetch request.
 - `USExpandingDataSource` powers a table or collection view with multiple sections, much like `USSectionedDataSource`, but also allows for sections to be expanded and collapsed.
 
-`USDataSources` is my own implementation of ideas featured in [objc.io's wonderful first issue](http://www.objc.io/issue-1/table-views.html).
-
-`USDataSources` powers single-section, multi-section, and Core Data-backed tables in my app [MUDRammer - A Modern MUD client for iPhone and iPad](https://itunes.apple.com/us/app/mudrammer-a-modern-mud-client/id597157072?mt=8).
+`USDataSource` is my own implementation of ideas featured in [objc.io's wonderful first issue](http://www.objc.io/issue-1/table-views.html).
 
 ## Install
 
 Install with [CocoaPods](http://cocoapods.org). Add to your `Podfile`:
 
 ```
-pod 'USDataSources'
+pod 'USDataSource'
 ```
 
 ## Example
 
-All the tables and collection views in the `Example` project are built with `USDataSources`.
+All the tables and collection views in the `Example` project are built with `USDataSource`.
 
 ```bash
-pod try USDataSources
+pod try USDataSource
 ```
 
 Or:
@@ -39,7 +37,7 @@ Or:
 ```bash
 cd Example
 pod install
-open ExampleUSDataSources.xcworkspace
+open ExampleUSDataSource.xcworkspace
 ```
 
 ## Array Data Source
@@ -66,7 +64,7 @@ Check out the example project for sample table and collection views that use the
     _wizardDataSource = [[USArrayDataSource alloc] initWithItems:
                          @[ @"Merlyn", @"Gandalf", @"Melisandre" ]];
 
-    // USDataSources creates your cell and calls
+    // USDataSource creates your cell and calls
     // this configure block for each cell with 
     // the object being presented in that cell,
     // the parent table or collection view,
@@ -140,7 +138,7 @@ self.wizardDataSource.cellCreationBlock = ^id(NSString *wizard,
 
 ```
 
-Your view controller should continue to implement `UITableViewDelegate`. `USDataSources` can help there too:
+Your view controller should continue to implement `UITableViewDelegate`. `USDataSource` can help there too:
 
 ```objc
 - (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -274,7 +272,7 @@ Check out the example project for a sample table using the expanding data source
 
 ## Core Data
 
-You're a modern wo/man-about-Internet and sometimes you want to present a `UITableView` or `UICollectionView` backed by a core data fetch request or fetched results controller. `USDataSources` has you covered with `USCoreDataSource`, featured here with a cameo by [MagicalRecord](https://github.com/magicalpanda/MagicalRecord).
+You're a modern wo/man-about-Internet and sometimes you want to present a `UITableView` or `UICollectionView` backed by a core data fetch request or fetched results controller. `USDataSource` has you covered with `USCoreDataSource`, featured here with a cameo by [MagicalRecord](https://github.com/magicalpanda/MagicalRecord).
 
 ```objc
 @interface USCoreDataTableViewController : UITableViewController
@@ -339,4 +337,4 @@ You're a modern wo/man-about-Internet and sometimes you want to present a `UITab
 
 ## Thanks!
 
-`USDataSources` is a [@jhersh](https://github.com/jhersh) production -- ([electronic mail](mailto:jon@her.sh) | [@jhersh](https://twitter.com/jhersh))
+`USDataSource` is a [@suraj](https://github.com/umairsuraj01) production -- ([electronic mail](mailto:umairsuraj.engineer@gmail.com) | [@suraj](https://github.com/umairsuraj01))

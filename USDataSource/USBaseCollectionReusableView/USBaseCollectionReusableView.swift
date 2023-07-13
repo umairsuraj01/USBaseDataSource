@@ -12,7 +12,7 @@ class USBaseCollectionReusableView: UICollectionReusableView {
         return NSStringFromClass(self)
     }
     
-    static func supplementaryView(for collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> Self {
+    class func supplementaryView(for collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> Self {
         return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: self.identifier(), for: indexPath) as! Self
     }
     

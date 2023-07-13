@@ -64,7 +64,7 @@ class USExpandingDataSource: USSectionedDataSource {
         
         let section = sectionAtIndex(index: index)
         
-        let targetRowCount = expanded ? section.numberOfItems : numberOfCollapsedRows(inSection: index)
+        let targetRowCount = expanded ? section.numberOfItems() : numberOfCollapsedRows(inSection: index)
         let currentRowCount = numberOfItems(inSection: index)
         
         section.isExpanded = expanded
@@ -93,7 +93,7 @@ class USExpandingDataSource: USSectionedDataSource {
     }
     
     func appendItems(_ items: [Any], toSection section: Int) {
-        let itemCount = sectionAtIndex(index: section).numberOfItems
+        let itemCount = sectionAtIndex(index: section).numberOfItems()
         let indexes = IndexSet(integersIn: itemCount..<(itemCount + items.count))
         insertItems(items, atIndexes: indexes, inSection: section)
     }
@@ -142,7 +142,7 @@ class USExpandingDataSource: USSectionedDataSource {
         
         section.items.removeObjects(at: indexes)
         
-        if shouldRemoveEmptySections && section.numberOfItems == 0 {
+        if shouldRemoveEmptySections && section.numberOfItems() == 0 {
             removeSection(at: sectionIndex)
         } else {
             let potentialIndexes = IndexPath.array(withIndexSet: indexes, inSection: sectionIndex)

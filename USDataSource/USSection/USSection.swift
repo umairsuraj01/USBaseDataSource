@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class USSection: NSObject, NSCopying {
+    
     override init() {
         super.init()
         items = []
@@ -51,12 +52,12 @@ class USSection: NSObject, NSCopying {
         return sectionWithItems(array, header: header, footer: footer, identifier: identifier) as! Self
     }
     
-    var numberOfItems: Int {
+    func numberOfItems() -> Int {
         return items.count
     }
     
     func itemAtIndex(_ index: Int) -> Any? {
-        guard index < numberOfItems else {
+        guard index < numberOfItems() else {
             return nil
         }
         

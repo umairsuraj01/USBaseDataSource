@@ -26,8 +26,8 @@
             filePath = "ExampleDataSource/USDataSource/USBaseCollectionCell/USBaseCollectionCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "configureCell()"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,8 +42,8 @@
             filePath = "ExampleDataSource/USDataSource/USArrayDataSource/USArrayDataSource.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "removeItems(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,8 +58,8 @@
             filePath = "ExampleDataSource/USDataSource/USArrayDataSource/USArrayDataSource.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "removeItems(_:)"
             landmarkType = "7">
             <Locations>
@@ -106,8 +106,8 @@
             filePath = "ExampleDataSource/USDataSource/USArrayDataSource/USArrayDataSource.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "observeValue(forKeyPath:of:change:context:)"
             landmarkType = "7">
             <Locations>
@@ -169,42 +169,10 @@
             filePath = "ExampleDataSource/USDataSource/USBaseDataSource/USBaseDataSource.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "353"
-            endingLineNumber = "353"
+            startingLineNumber = "368"
+            endingLineNumber = "368"
             landmarkName = "moveCell(at:to:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1844076E-5846-4A1D-84D6-3409AFAAA724"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ExampleDataSource/USDataSource/USSectionedDataSource/USSectionedDataSource.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
-            landmarkName = "USSectionedDataSource"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9B8A1C13-5514-4A79-B985-F9261AFCE2BD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ExampleDataSource/USDataSource/USSectionedDataSource/USSectionedDataSource.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
-            landmarkName = "USSectionedDataSource"
-            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -217,8 +185,8 @@
             filePath = "ExampleDataSource/USDataSource/USBaseDataSource/USBaseDataSource.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
             landmarkName = "indexPathArray(with:inSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -233,8 +201,8 @@
             filePath = "ExampleDataSource/USDataSource/USBaseDataSource/USBaseDataSource.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
+            startingLineNumber = "333"
+            endingLineNumber = "333"
             landmarkName = "indexPathArray(with:inSection:)"
             landmarkType = "7">
             <Locations>
@@ -281,8 +249,8 @@
             filePath = "ExampleDataSource/USDataSource/USBaseDataSource/USBaseDataSource.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
             landmarkName = "indexPathArray(with:inSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -297,8 +265,8 @@
             filePath = "ExampleDataSource/USDataSource/USBaseDataSource/USBaseDataSource.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "322"
-            endingLineNumber = "322"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
             landmarkName = "indexPathArray(with:inSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -313,8 +281,8 @@
             filePath = "ExampleDataSource/USDataSource/USBaseDataSource/USBaseDataSource.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "339"
-            endingLineNumber = "339"
+            startingLineNumber = "354"
+            endingLineNumber = "354"
             landmarkName = "deleteCells(at:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -329,8 +297,8 @@
             filePath = "ExampleDataSource/USDataSource/USSectionedDataSource/USSectionedDataSource.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "appendItems(items:toSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -345,8 +313,8 @@
             filePath = "ExampleDataSource/USDataSource/USSectionedDataSource/USSectionedDataSource.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "insertItems(items:atIndexes:inSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -377,8 +345,8 @@
             filePath = "ExampleDataSource/USDataSource/USSectionedDataSource/USSectionedDataSource.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "moveSection(at:to:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -393,8 +361,8 @@
             filePath = "ExampleDataSource/USDataSource/USSectionedDataSource/USSectionedDataSource.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "adjustSection(at:toNumberOfItems:)"
             landmarkType = "7">
          </BreakpointContent>

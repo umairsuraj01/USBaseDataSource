@@ -18,7 +18,6 @@
 		088279A82A5ECC5700AA8080 /* ExtensionUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088279932A5ECC5700AA8080 /* ExtensionUITableView.swift */; };
 		088279A92A5ECC5700AA8080 /* ExtensionUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088279952A5ECC5700AA8080 /* ExtensionUICollectionView.swift */; };
 		088279AA2A5ECC5700AA8080 /* USBaseTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088279972A5ECC5700AA8080 /* USBaseTableCell.swift */; };
-		088279AB2A5ECC5700AA8080 /* USDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088279992A5ECC5700AA8080 /* USDataSource.swift */; };
 		088279AC2A5ECC5700AA8080 /* USDataSourceItemAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0882799B2A5ECC5700AA8080 /* USDataSourceItemAccess.swift */; };
 		088279AD2A5ECC5700AA8080 /* USArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0882799D2A5ECC5700AA8080 /* USArrayDataSource.swift */; };
 		088279AE2A5ECC5700AA8080 /* USBaseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0882799F2A5ECC5700AA8080 /* USBaseCollectionCell.swift */; };
@@ -73,7 +72,6 @@
 		088279932A5ECC5700AA8080 /* ExtensionUITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUITableView.swift; sourceTree = "<group>"; };
 		088279952A5ECC5700AA8080 /* ExtensionUICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUICollectionView.swift; sourceTree = "<group>"; };
 		088279972A5ECC5700AA8080 /* USBaseTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBaseTableCell.swift; sourceTree = "<group>"; };
-		088279992A5ECC5700AA8080 /* USDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USDataSource.swift; sourceTree = "<group>"; };
 		0882799B2A5ECC5700AA8080 /* USDataSourceItemAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USDataSourceItemAccess.swift; sourceTree = "<group>"; };
 		0882799D2A5ECC5700AA8080 /* USArrayDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USArrayDataSource.swift; sourceTree = "<group>"; };
 		0882799F2A5ECC5700AA8080 /* USBaseCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBaseCollectionCell.swift; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 				0882798F2A5ECC5700AA8080 /* USSectionedDataSource */,
 				088279912A5ECC5700AA8080 /* Extensions */,
 				088279962A5ECC5700AA8080 /* USBaseTableCell */,
-				088279982A5ECC5700AA8080 /* USDataSourceHeader */,
 				0882799A2A5ECC5700AA8080 /* USDataSourceItemAccess */,
 				0882799C2A5ECC5700AA8080 /* USArrayDataSource */,
 				0882799E2A5ECC5700AA8080 /* USBaseCollectionCell */,
@@ -253,14 +250,6 @@
 				088279972A5ECC5700AA8080 /* USBaseTableCell.swift */,
 			);
 			path = USBaseTableCell;
-			sourceTree = "<group>";
-		};
-		088279982A5ECC5700AA8080 /* USDataSourceHeader */ = {
-			isa = PBXGroup;
-			children = (
-				088279992A5ECC5700AA8080 /* USDataSource.swift */,
-			);
-			path = USDataSourceHeader;
 			sourceTree = "<group>";
 		};
 		0882799A2A5ECC5700AA8080 /* USDataSourceItemAccess */ = {
@@ -630,7 +619,6 @@
 				08B69CC32A5D8D63004FDBE4 /* ViewController.swift in Sources */,
 				088279A02A5ECC5700AA8080 /* USBaseHeaderFooterView.swift in Sources */,
 				088279A82A5ECC5700AA8080 /* ExtensionUITableView.swift in Sources */,
-				088279AB2A5ECC5700AA8080 /* USDataSource.swift in Sources */,
 				088279A52A5ECC5700AA8080 /* USCoreDataSource.swift in Sources */,
 				08B69CFD2A5D9602004FDBE4 /* USSectionedViewController.swift in Sources */,
 				08B69CC92A5D8D63004FDBE4 /* ExampleDataSource.xcdatamodeld in Sources */,
