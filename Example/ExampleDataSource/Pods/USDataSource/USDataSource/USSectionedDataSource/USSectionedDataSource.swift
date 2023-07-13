@@ -72,13 +72,13 @@ class USSectionedDataSource: USBaseDataSource {
     
     func insertItems(items: [Any], atIndexes indexes: IndexSet, inSection section: Int) {
         sectionAtIndex(index: section).items.insert(items, at: indexes.first ?? 0)
-        insertCells(at: USSectionedDataSource.indexPathArrayWithIndexSet(indexSet: indexes, inSection: section))
+        insertCells(at: Self.indexPathArrayWithIndexSet(indexSet: indexes, inSection: section))
     }
     
     func appendItems(items: [Any], toSection section: Int) {
         let sectionCount = numberOfItemsInSection(section: section)
         sectionAtIndex(index: section).items.addObjects(from: items)
-        insertCells(at: USSectionedDataSource.indexPathArrayWithRange(range: NSMakeRange(sectionCount, items.count), inSection: section))
+        insertCells(at: Self.indexPathArrayWithRange(range: NSMakeRange(sectionCount, items.count), inSection: section))
     }
     
     // MARK: - Adjusting sections
@@ -167,7 +167,7 @@ class USSectionedDataSource: USBaseDataSource {
         if shouldRemoveEmptySections && numberOfItemsInSection(section: section) == 0 {
             removeSection(at: section)
         } else {
-            deleteCells(at: USSectionedDataSource.indexPathArray(with: indexes, inSection: section))
+            deleteCells(at: Self.indexPathArray(with: indexes, inSection: section))
         }
     }
     

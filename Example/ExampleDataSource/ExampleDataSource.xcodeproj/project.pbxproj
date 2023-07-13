@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		088279A02A5ECC5700AA8080 /* USBaseHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088279822A5ECC5700AA8080 /* USBaseHeaderFooterView.swift */; };
+		088279A12A5ECC5700AA8080 /* USBaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088279842A5ECC5700AA8080 /* USBaseDataSource.swift */; };
+		088279A22A5ECC5700AA8080 /* USExpandingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088279862A5ECC5700AA8080 /* USExpandingDataSource.swift */; };
+		088279A32A5ECC5700AA8080 /* USBaseCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088279882A5ECC5700AA8080 /* USBaseCollectionReusableView.swift */; };
+		088279A42A5ECC5700AA8080 /* USResultsFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0882798A2A5ECC5700AA8080 /* USResultsFilter.swift */; };
+		088279A52A5ECC5700AA8080 /* USCoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0882798C2A5ECC5700AA8080 /* USCoreDataSource.swift */; };
+		088279A62A5ECC5700AA8080 /* USSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0882798E2A5ECC5700AA8080 /* USSection.swift */; };
+		088279A72A5ECC5700AA8080 /* USSectionedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088279902A5ECC5700AA8080 /* USSectionedDataSource.swift */; };
+		088279A82A5ECC5700AA8080 /* ExtensionUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088279932A5ECC5700AA8080 /* ExtensionUITableView.swift */; };
+		088279A92A5ECC5700AA8080 /* ExtensionUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088279952A5ECC5700AA8080 /* ExtensionUICollectionView.swift */; };
+		088279AA2A5ECC5700AA8080 /* USBaseTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088279972A5ECC5700AA8080 /* USBaseTableCell.swift */; };
+		088279AC2A5ECC5700AA8080 /* USDataSourceItemAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0882799B2A5ECC5700AA8080 /* USDataSourceItemAccess.swift */; };
+		088279AD2A5ECC5700AA8080 /* USArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0882799D2A5ECC5700AA8080 /* USArrayDataSource.swift */; };
+		088279AE2A5ECC5700AA8080 /* USBaseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0882799F2A5ECC5700AA8080 /* USBaseCollectionCell.swift */; };
 		08B69CBF2A5D8D63004FDBE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B69CBE2A5D8D63004FDBE4 /* AppDelegate.swift */; };
 		08B69CC12A5D8D63004FDBE4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B69CC02A5D8D63004FDBE4 /* SceneDelegate.swift */; };
 		08B69CC32A5D8D63004FDBE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B69CC22A5D8D63004FDBE4 /* ViewController.swift */; };
@@ -47,6 +61,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		088279822A5ECC5700AA8080 /* USBaseHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBaseHeaderFooterView.swift; sourceTree = "<group>"; };
+		088279842A5ECC5700AA8080 /* USBaseDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBaseDataSource.swift; sourceTree = "<group>"; };
+		088279862A5ECC5700AA8080 /* USExpandingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USExpandingDataSource.swift; sourceTree = "<group>"; };
+		088279882A5ECC5700AA8080 /* USBaseCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBaseCollectionReusableView.swift; sourceTree = "<group>"; };
+		0882798A2A5ECC5700AA8080 /* USResultsFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USResultsFilter.swift; sourceTree = "<group>"; };
+		0882798C2A5ECC5700AA8080 /* USCoreDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USCoreDataSource.swift; sourceTree = "<group>"; };
+		0882798E2A5ECC5700AA8080 /* USSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSection.swift; sourceTree = "<group>"; };
+		088279902A5ECC5700AA8080 /* USSectionedDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSectionedDataSource.swift; sourceTree = "<group>"; };
+		088279932A5ECC5700AA8080 /* ExtensionUITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUITableView.swift; sourceTree = "<group>"; };
+		088279952A5ECC5700AA8080 /* ExtensionUICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUICollectionView.swift; sourceTree = "<group>"; };
+		088279972A5ECC5700AA8080 /* USBaseTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBaseTableCell.swift; sourceTree = "<group>"; };
+		0882799B2A5ECC5700AA8080 /* USDataSourceItemAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USDataSourceItemAccess.swift; sourceTree = "<group>"; };
+		0882799D2A5ECC5700AA8080 /* USArrayDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USArrayDataSource.swift; sourceTree = "<group>"; };
+		0882799F2A5ECC5700AA8080 /* USBaseCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBaseCollectionCell.swift; sourceTree = "<group>"; };
 		08B69CBB2A5D8D63004FDBE4 /* ExampleDataSource.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleDataSource.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B69CBE2A5D8D63004FDBE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08B69CC02A5D8D63004FDBE4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +135,147 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		088279802A5ECC5700AA8080 /* USDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				088279812A5ECC5700AA8080 /* USBaseHeaderFooterView */,
+				088279832A5ECC5700AA8080 /* USBaseDataSource */,
+				088279852A5ECC5700AA8080 /* USExpandingDataSource */,
+				088279872A5ECC5700AA8080 /* USBaseCollectionReusableView */,
+				088279892A5ECC5700AA8080 /* USResultsFilter */,
+				0882798B2A5ECC5700AA8080 /* USCoreDataSource */,
+				0882798D2A5ECC5700AA8080 /* USSection */,
+				0882798F2A5ECC5700AA8080 /* USSectionedDataSource */,
+				088279912A5ECC5700AA8080 /* Extensions */,
+				088279962A5ECC5700AA8080 /* USBaseTableCell */,
+				0882799A2A5ECC5700AA8080 /* USDataSourceItemAccess */,
+				0882799C2A5ECC5700AA8080 /* USArrayDataSource */,
+				0882799E2A5ECC5700AA8080 /* USBaseCollectionCell */,
+			);
+			path = USDataSource;
+			sourceTree = "<group>";
+		};
+		088279812A5ECC5700AA8080 /* USBaseHeaderFooterView */ = {
+			isa = PBXGroup;
+			children = (
+				088279822A5ECC5700AA8080 /* USBaseHeaderFooterView.swift */,
+			);
+			path = USBaseHeaderFooterView;
+			sourceTree = "<group>";
+		};
+		088279832A5ECC5700AA8080 /* USBaseDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				088279842A5ECC5700AA8080 /* USBaseDataSource.swift */,
+			);
+			path = USBaseDataSource;
+			sourceTree = "<group>";
+		};
+		088279852A5ECC5700AA8080 /* USExpandingDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				088279862A5ECC5700AA8080 /* USExpandingDataSource.swift */,
+			);
+			path = USExpandingDataSource;
+			sourceTree = "<group>";
+		};
+		088279872A5ECC5700AA8080 /* USBaseCollectionReusableView */ = {
+			isa = PBXGroup;
+			children = (
+				088279882A5ECC5700AA8080 /* USBaseCollectionReusableView.swift */,
+			);
+			path = USBaseCollectionReusableView;
+			sourceTree = "<group>";
+		};
+		088279892A5ECC5700AA8080 /* USResultsFilter */ = {
+			isa = PBXGroup;
+			children = (
+				0882798A2A5ECC5700AA8080 /* USResultsFilter.swift */,
+			);
+			path = USResultsFilter;
+			sourceTree = "<group>";
+		};
+		0882798B2A5ECC5700AA8080 /* USCoreDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				0882798C2A5ECC5700AA8080 /* USCoreDataSource.swift */,
+			);
+			path = USCoreDataSource;
+			sourceTree = "<group>";
+		};
+		0882798D2A5ECC5700AA8080 /* USSection */ = {
+			isa = PBXGroup;
+			children = (
+				0882798E2A5ECC5700AA8080 /* USSection.swift */,
+			);
+			path = USSection;
+			sourceTree = "<group>";
+		};
+		0882798F2A5ECC5700AA8080 /* USSectionedDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				088279902A5ECC5700AA8080 /* USSectionedDataSource.swift */,
+			);
+			path = USSectionedDataSource;
+			sourceTree = "<group>";
+		};
+		088279912A5ECC5700AA8080 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				088279922A5ECC5700AA8080 /* ExtensionUITableView */,
+				088279942A5ECC5700AA8080 /* ExtensionUICollectionView */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		088279922A5ECC5700AA8080 /* ExtensionUITableView */ = {
+			isa = PBXGroup;
+			children = (
+				088279932A5ECC5700AA8080 /* ExtensionUITableView.swift */,
+			);
+			path = ExtensionUITableView;
+			sourceTree = "<group>";
+		};
+		088279942A5ECC5700AA8080 /* ExtensionUICollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				088279952A5ECC5700AA8080 /* ExtensionUICollectionView.swift */,
+			);
+			path = ExtensionUICollectionView;
+			sourceTree = "<group>";
+		};
+		088279962A5ECC5700AA8080 /* USBaseTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				088279972A5ECC5700AA8080 /* USBaseTableCell.swift */,
+			);
+			path = USBaseTableCell;
+			sourceTree = "<group>";
+		};
+		0882799A2A5ECC5700AA8080 /* USDataSourceItemAccess */ = {
+			isa = PBXGroup;
+			children = (
+				0882799B2A5ECC5700AA8080 /* USDataSourceItemAccess.swift */,
+			);
+			path = USDataSourceItemAccess;
+			sourceTree = "<group>";
+		};
+		0882799C2A5ECC5700AA8080 /* USArrayDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				0882799D2A5ECC5700AA8080 /* USArrayDataSource.swift */,
+			);
+			path = USArrayDataSource;
+			sourceTree = "<group>";
+		};
+		0882799E2A5ECC5700AA8080 /* USBaseCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				0882799F2A5ECC5700AA8080 /* USBaseCollectionCell.swift */,
+			);
+			path = USBaseCollectionCell;
+			sourceTree = "<group>";
+		};
 		08B69CB22A5D8D63004FDBE4 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +301,7 @@
 		08B69CBD2A5D8D63004FDBE4 /* ExampleDataSource */ = {
 			isa = PBXGroup;
 			children = (
+				088279802A5ECC5700AA8080 /* USDataSource */,
 				08B69CBE2A5D8D63004FDBE4 /* AppDelegate.swift */,
 				08B69CCA2A5D8D66004FDBE4 /* Assets.xcassets */,
 				08B69CC72A5D8D63004FDBE4 /* ExampleDataSource.xcdatamodeld */,
@@ -432,13 +602,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				088279A72A5ECC5700AA8080 /* USSectionedDataSource.swift in Sources */,
+				088279A42A5ECC5700AA8080 /* USResultsFilter.swift in Sources */,
+				088279A32A5ECC5700AA8080 /* USBaseCollectionReusableView.swift in Sources */,
+				088279AA2A5ECC5700AA8080 /* USBaseTableCell.swift in Sources */,
+				088279A12A5ECC5700AA8080 /* USBaseDataSource.swift in Sources */,
 				08B69CFF2A5D9602004FDBE4 /* USTableViewController.swift in Sources */,
+				088279A92A5ECC5700AA8080 /* ExtensionUICollectionView.swift in Sources */,
 				08B69CFE2A5D9602004FDBE4 /* USCollectionViewController.swift in Sources */,
 				08B69CF92A5D9602004FDBE4 /* USCollectionViewSectionHeader.swift in Sources */,
 				08B69CFB2A5D9602004FDBE4 /* USExpandingViewController.swift in Sources */,
+				088279A22A5ECC5700AA8080 /* USExpandingDataSource.swift in Sources */,
+				088279AD2A5ECC5700AA8080 /* USArrayDataSource.swift in Sources */,
+				088279AE2A5ECC5700AA8080 /* USBaseCollectionCell.swift in Sources */,
+				088279AC2A5ECC5700AA8080 /* USDataSourceItemAccess.swift in Sources */,
 				08B69CC32A5D8D63004FDBE4 /* ViewController.swift in Sources */,
+				088279A02A5ECC5700AA8080 /* USBaseHeaderFooterView.swift in Sources */,
+				088279A82A5ECC5700AA8080 /* ExtensionUITableView.swift in Sources */,
+				088279A52A5ECC5700AA8080 /* USCoreDataSource.swift in Sources */,
 				08B69CFD2A5D9602004FDBE4 /* USSectionedViewController.swift in Sources */,
 				08B69CC92A5D8D63004FDBE4 /* ExampleDataSource.xcdatamodeld in Sources */,
+				088279A62A5ECC5700AA8080 /* USSection.swift in Sources */,
 				08B69CBF2A5D8D63004FDBE4 /* AppDelegate.swift in Sources */,
 				08B69CFA2A5D9602004FDBE4 /* Wizard.swift in Sources */,
 				08B69D002A5D9603004FDBE4 /* USSolidColorCollectionCell.swift in Sources */,

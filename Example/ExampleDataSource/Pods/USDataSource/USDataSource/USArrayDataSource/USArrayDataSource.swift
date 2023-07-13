@@ -158,12 +158,11 @@ class USArrayDataSource: USBaseDataSource {
     // MARK: - Removing Items
 
     func removeItems(in range: NSRange) {
-        let indexes = IndexSet(integersIn: range.location..<(range.location + range.length))
-        removeItems(at: indexes)
+        removeItems(at: IndexSet(integersIn: range.lowerBound..<range.upperBound))
     }
 
-    func removeItem(at index: UInt) {
-        removeItems(at: IndexSet(integer: Int(index)))
+    func removeItem(at index: Int) {
+        removeItems(at: IndexSet(integer: index))
     }
 
     func removeItems(at indexes: IndexSet) {
@@ -173,6 +172,7 @@ class USArrayDataSource: USBaseDataSource {
     func removeItems(_ itemsToRemove: [Any]) {
         items?.removeObjects(in: itemsToRemove)
     }
+    
 
     // MARK: - UITableViewDataSource
 
