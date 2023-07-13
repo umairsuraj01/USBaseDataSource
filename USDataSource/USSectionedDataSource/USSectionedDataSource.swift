@@ -141,24 +141,24 @@ class USSectionedDataSource: USBaseDataSource {
     
     // MARK: - Adjusting sections
     
-    func adjustSection(at index: Int, toNumberOfItems numberOfItems: Int) -> Bool {
-        if numberOfItems == numberOfItems(inSection: index) {
+    func adjustSection(at index: Int, toNumberOfItems totalItems: Int) -> Bool {
+        if totalItems == numberOfItems(inSection: index) {
             return false
         }
         
-        if numberOfItems == 0 && shouldRemoveEmptySections {
+        if totalItems == 0 && shouldRemoveEmptySections {
             removeSection(at: index)
             return true
         }
         
         let section = sectionAtIndex(index: index)
         
-        if numberOfItems > section.numberOfItems() {
-            for i in section.numberOfItems()..<numberOfItems {
+        if totalItems > section.numberOfItems() {
+            for i in section.numberOfItems()..<totalItems {
                 section.items.insert(i as NSNumber, at: i)
             }
         } else {
-            let range = numberOfItems..<section.numberOfItems()
+            let range = totalItems..<section.numberOfItems()
             let indexesToRemove = IndexSet(integersIn: range)
             section.items.removeObjects(at: indexesToRemove)
         }
@@ -221,8 +221,7 @@ class USSectionedDataSource: USBaseDataSource {
     
     func removeItems(at indexes: IndexSet, in section: Int) {
         sectionAtIndex(index: section).items.removeObjects(at: indexes)
-        
-        if shouldRemoveEmptySections && numberOfItemsInSection(section: section) == 0 {
+        if shouldRemoveEmptySections && numberOfItems(inSection: section) == 0 {
             removeSection(at: section)
         } else {
             deleteCells(at: Self.indexPathArray(with: indexes, inSection: section))
