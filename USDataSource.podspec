@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "USDataSource"
   s.version      = "0.3"
-  s.summary      = "Flexible data sources for your UITableView and UICollectionView."
+  s.summary      = "Fantastic data sources for your UITableView and UICollectionView."
   s.homepage     = "https://github.com/umairsuraj01/USBaseDataSource"
   s.license      = { :type => 'MIT', :file => 'LICENSE'  }
   s.author       = { "Muhammad Umair Soorage" => "umairsuraj.engineer@gmail.com" }
